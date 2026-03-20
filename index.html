@@ -1,433 +1,858 @@
 <!DOCTYPE html>
 <html class="dark" lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>JK | Jaivien Kendrick - AI Strategy Consultant</title>
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;700;800&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;700&family=Bebas+Neue&display=swap" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-  <script id="tailwind-config">
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          colors: {
-            "primary": "#ff2d78",
-            "secondary": "#00ffcc",
-            "tertiary": "#ffe04a",
-            "background": "#0a0a12",
-            "surface": "#0f0f1a",
-            "on-surface": "#e8e0f0",
-            "bone": "#F5F0E8",
-            "crimson": "#C41E3A",
-            "void": "#0a0a0a"
-          },
-          fontFamily: {
-            "headline": ["Sora", "sans-serif"],
-            "body": ["Inter", "sans-serif"],
-            "label": ["Space Grotesk", "monospace"],
-            "display": ["Bebas Neue", "cursive"]
-          },
-          borderRadius: {
-            "DEFAULT": "0.125rem",
-            "lg": "0.25rem",
-            "xl": "0.5rem",
-            "full": "0.75rem"
-          },
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>JK | Jaivien Kendrick - AI Strategy Consultant</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;700;800&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;700&family=Bebas+Neue&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "primary": "#ff2d78",
+          "secondary": "#00ffcc",
+          "tertiary": "#ffe04a",
+          "background": "#0a0a12",
+          "surface": "#0f0f1a",
+          "on-surface": "#e8e0f0",
+          "bone": "#F5F0E8",
+          "crimson": "#C41E3A",
+          "void": "#0a0a0a"
         },
+        fontFamily: {
+          "headline": ["Sora", "sans-serif"],
+          "body": ["Inter", "sans-serif"],
+          "label": ["Space Grotesk", "monospace"],
+          "display": ["Bebas Neue", "cursive"]
+        },
+        borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
       },
-    }
-  </script>
-  <style>
-    body {
-      background-color: #0a0a0a;
-      color: #F5F0E8;
-      font-family: 'Inter', sans-serif;
-    }
-    .neon-glow-text {
-      text-shadow: 0 0 8px rgba(196, 30, 58, 0.8);
-    }
-    .crimson-border-glow {
-      border: 1px solid rgba(196, 30, 58, 0.3);
-      box-shadow: inset 0 0 12px rgba(196, 30, 58, 0.1);
-    }
-    .crimson-border-glow:hover {
-      border: 1px solid rgba(196, 30, 58, 0.6);
-      box-shadow: 0 0 16px rgba(196, 30, 58, 0.3);
-    }
-    .glass-card {
-      background: rgba(15, 15, 26, 0.6);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(245, 240, 232, 0.1);
-    }
-    .scanline {
-      width: 100%;
-      height: 100px;
-      z-index: 10;
-      background: linear-gradient(0deg, rgba(196, 30, 58, 0) 0%, rgba(196, 30, 58, 0.05) 50%, rgba(196, 30, 58, 0) 100%);
-      opacity: 0.1;
-      position: absolute;
-      pointer-events: none;
-    }
-    .grid-bg {
-      background-image: linear-gradient(rgba(196, 30, 58, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(196, 30, 58, 0.05) 1px, transparent 1px);
-      background-size: 40px 40px;
-    }
-  </style>
+    },
+  }
+</script>
+<style>
+  body { background-color: #0a0a0a; color: #F5F0E8; font-family: 'Inter', sans-serif; }
+  .neon-glow-text { text-shadow: 0 0 8px rgba(196,30,58,0.8); }
+  .crimson-border-glow { border: 1px solid rgba(196,30,58,0.3); box-shadow: inset 0 0 12px rgba(196,30,58,0.1); }
+  .crimson-border-glow:hover { border: 1px solid rgba(196,30,58,0.6); box-shadow: 0 0 16px rgba(196,30,58,0.3); }
+  .glass-card { background: rgba(15,15,26,0.6); backdrop-filter: blur(12px); border: 1px solid rgba(245,240,232,0.1); }
+  .grid-bg { background-image: linear-gradient(rgba(196,30,58,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(196,30,58,0.05) 1px, transparent 1px); background-size: 40px 40px; }
+
+  /* ── RESUME MODAL ── */
+  #resume-modal {
+    position: fixed; inset: 0; z-index: 300;
+    display: none; overflow: hidden;
+    background: rgba(0,0,0,0.97);
+  }
+  #resume-modal.modal-open { display: flex; }
+
+  /* Boot screen */
+  #boot-screen {
+    position: absolute; inset: 0; z-index: 10;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    background: #0a0a0a;
+    transition: opacity 0.5s ease;
+  }
+  #boot-screen.fade-out { opacity: 0; pointer-events: none; }
+  .boot-bar-track { width: 300px; height: 2px; background: rgba(196,30,58,0.2); margin-top: 24px; }
+  .boot-bar-fill { height: 100%; background: #C41E3A; width: 0; transition: width 1.2s cubic-bezier(0.4,0,0.2,1); box-shadow: 0 0 12px rgba(196,30,58,0.8); }
+
+  /* Progress bar */
+  #resume-progress {
+    position: fixed; top: 0; left: 0; height: 2px; z-index: 400;
+    background: linear-gradient(90deg, #C41E3A, #ff2d78);
+    width: 0; transition: width 0.1s linear;
+    box-shadow: 0 0 8px rgba(196,30,58,0.8);
+  }
+
+  /* Paper background */
+  .paper-wrapper {
+    position: fixed; right: 0; top: 0; bottom: 0;
+    width: 42%; display: flex; align-items: center; justify-content: center;
+    pointer-events: none; z-index: 1;
+    perspective: 1800px;
+  }
+  .paper-doc {
+    width: 88%; max-width: 520px;
+    background: #f9f6f0;
+    padding: 36px 32px;
+    box-shadow: -20px 20px 80px rgba(0,0,0,0.7), 0 0 40px rgba(196,30,58,0.08);
+    transform: rotateY(-14deg) rotateX(2deg);
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease;
+    opacity: 0.18;
+    font-family: 'Inter', sans-serif;
+    color: #111;
+    font-size: 7px;
+    line-height: 1.5;
+    will-change: transform;
+    position: relative;
+  }
+  .paper-doc h1 { font-size: 13px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 2px; }
+  .paper-doc h2 { font-size: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; border-bottom: 0.5px solid #C41E3A; margin: 8px 0 4px; color: #C41E3A; }
+  .paper-doc h3 { font-size: 7.5px; font-weight: 700; margin: 5px 0 1px; }
+  .paper-doc .sub { font-size: 6.5px; color: #555; font-weight: 400; }
+  .paper-doc ul { list-style: disc; padding-left: 10px; margin: 3px 0; }
+  .paper-doc li { margin-bottom: 1px; }
+  .paper-stamp {
+    position: absolute; bottom: 20px; right: 20px;
+    border: 2px solid rgba(196,30,58,0.4); border-radius: 50%;
+    width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;
+    color: rgba(196,30,58,0.35); font-size: 6px; font-weight: 800;
+    text-transform: uppercase; text-align: center; letter-spacing: 1px;
+    transform: rotate(-20deg);
+  }
+
+  /* Scrollable content */
+  .modal-scroll {
+    position: relative; z-index: 2;
+    width: 58%; max-width: 700px;
+    height: 100vh; overflow-y: auto;
+    padding: 0 48px 120px 48px;
+    scrollbar-width: thin; scrollbar-color: rgba(196,30,58,0.3) transparent;
+  }
+  .modal-scroll::-webkit-scrollbar { width: 3px; }
+  .modal-scroll::-webkit-scrollbar-thumb { background: rgba(196,30,58,0.4); }
+
+  /* Close button */
+  #modal-close {
+    position: fixed; top: 24px; right: 24px; z-index: 500;
+    width: 44px; height: 44px; border-radius: 50%;
+    border: 1px solid rgba(196,30,58,0.4);
+    background: rgba(10,10,10,0.8); backdrop-filter: blur(8px);
+    color: #C41E3A; font-size: 18px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+  }
+  #modal-close:hover { background: #C41E3A; color: white; box-shadow: 0 0 20px rgba(196,30,58,0.5); }
+
+  /* Sections */
+  .tx-section {
+    opacity: 0; transform: translateY(40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+    margin-bottom: 80px;
+  }
+  .tx-section.revealed { opacity: 1; transform: translateY(0); }
+
+  .tx-label {
+    font-family: 'Space Grotesk', monospace;
+    font-size: 10px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 4px;
+    color: #C41E3A; margin-bottom: 8px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .tx-label::before { content: ''; display: block; width: 24px; height: 1px; background: #C41E3A; }
+  .tx-label::after { content: ''; display: block; width: 4px; height: 4px; border-radius: 50%; background: #C41E3A; animation: pulse-dot 1.5s ease-in-out infinite; }
+  @keyframes pulse-dot { 0%,100%{opacity:1;} 50%{opacity:0.2;} }
+
+  /* Job cards */
+  .job-card {
+    background: rgba(15,15,26,0.7); backdrop-filter: blur(12px);
+    border: 1px solid rgba(196,30,58,0.25);
+    padding: 28px; margin-bottom: 16px;
+    transform-style: preserve-3d;
+    transition: transform 0.15s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    cursor: default; border-left: 3px solid #C41E3A;
+  }
+
+  /* Skill chips */
+  .skill-chip {
+    display: inline-block;
+    padding: 6px 14px;
+    border: 1px solid rgba(196,30,58,0.2);
+    background: rgba(196,30,58,0.05);
+    font-family: 'Space Grotesk', monospace;
+    font-size: 10px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1px;
+    color: #F5F0E8; margin: 4px;
+    opacity: 0; transform: scale(0.8);
+    transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s, color 0.2s;
+  }
+  .skill-chip.lit { opacity: 1; transform: scale(1); }
+  .skill-chip:hover { background: #C41E3A; color: white; box-shadow: 0 0 12px rgba(196,30,58,0.4); }
+
+  /* Typewriter cursor */
+  .tw-cursor { display: inline-block; width: 2px; height: 1em; background: #C41E3A; vertical-align: text-bottom; animation: blink 0.8s step-end infinite; }
+  @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0;} }
+
+  /* Glitch */
+  @keyframes glitch {
+    0%,100%{text-shadow:0 0 8px rgba(196,30,58,0.8);}
+    20%{text-shadow:-2px 0 rgba(196,30,58,0.8),2px 0 rgba(0,255,204,0.3);}
+    40%{text-shadow:2px 0 rgba(196,30,58,0.8),-2px 0 rgba(0,255,204,0.3);}
+    60%{text-shadow:0 0 20px rgba(196,30,58,1);}
+  }
+  .glitch-text { animation: glitch 3s ease-in-out infinite; }
+
+  /* Education card */
+  .edu-card {
+    border: 1px solid rgba(196,30,58,0.3);
+    background: rgba(196,30,58,0.04);
+    padding: 40px; position: relative; overflow: hidden;
+  }
+  .edu-card::before {
+    content: ''; position: absolute; top: -1px; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, #C41E3A, transparent);
+  }
+
+  /* Scan line */
+  .scan-line {
+    position: fixed; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent 0%, rgba(196,30,58,0.6) 30%, rgba(196,30,58,0.8) 50%, rgba(196,30,58,0.6) 70%, transparent 100%);
+    pointer-events: none; z-index: 350;
+    animation: scan 4s linear infinite; opacity: 0.3;
+  }
+  @keyframes scan { from{top:-2px;} to{top:100vh;} }
+
+  .modal-cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 32px;
+    font-family: 'Space Grotesk', monospace;
+    font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 3px;
+    transition: all 0.25s; cursor: pointer;
+    text-decoration: none;
+  }
+
+  @keyframes bounce { 0%,100%{transform:translateY(0);} 50%{transform:translateY(6px);} }
+
+  @media (max-width: 768px) {
+    .paper-wrapper { display: none; }
+    .modal-scroll { width: 100%; padding: 0 20px 120px 20px; }
+  }
+</style>
 </head>
 <body class="bg-void text-bone selection:bg-crimson selection:text-white">
 
-  <!-- TopAppBar -->
-  <header class="fixed top-0 w-full z-50 bg-[#0a0a12]/80 backdrop-blur-md border-b border-[#C41E3A]/30 shadow-[0_0_15px_rgba(196,30,58,0.1)]">
-    <nav class="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
-      <div class="text-2xl font-black text-[#C41E3A] drop-shadow-[0_0_8px_rgba(196,30,58,0.8)] font-headline tracking-tight">
-        JK
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#0a0a12]/80 backdrop-filter backdrop-blur-md border-b border-[#C41E3A]/30 shadow-[0_0_15px_rgba(196,30,58,0.1)]">
+  <nav class="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
+    <div class="text-2xl font-black text-[#C41E3A] drop-shadow-[0_0_8px_rgba(196,30,58,0.8)] font-headline tracking-tight">JK</div>
+    <div class="hidden md:flex items-center gap-8 font-label text-xs uppercase tracking-widest">
+      <a class="text-gray-400 hover:text-[#C41E3A] transition-colors duration-300" href="#about">About</a>
+      <a class="text-gray-400 hover:text-[#C41E3A] transition-colors duration-300" href="#experience">Experience</a>
+      <a class="text-gray-400 hover:text-[#C41E3A] transition-colors duration-300" href="#skills">Skills</a>
+      <a class="text-gray-400 hover:text-[#C41E3A] transition-colors duration-300" href="#projects">Projects</a>
+      <a class="text-gray-400 hover:text-[#C41E3A] transition-colors duration-300" href="#contact">Contact</a>
+    </div>
+    <button class="px-5 py-2 bg-crimson text-white font-bold text-sm tracking-tighter uppercase transition-all duration-300 ease-in-out hover:scale-105 active:scale-95 shadow-[0_0_16px_rgba(196,30,58,0.4)]">Hire Me</button>
+  </nav>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="relative h-screen flex flex-col items-center justify-center overflow-hidden bg-void">
+    <div class="absolute inset-0 grid-bg opacity-20"></div>
+    <div class="absolute inset-0 pointer-events-none">
+      <svg class="opacity-30" height="100%" width="100%">
+        <pattern height="100" id="particles" patternUnits="userSpaceOnUse" width="100" x="0" y="0">
+          <circle cx="2" cy="2" fill="#C41E3A" r="1"></circle>
+          <circle cx="50" cy="80" fill="#C41E3A" r="1.5"></circle>
+          <circle cx="90" cy="10" fill="#C41E3A" r="1"></circle>
+        </pattern>
+        <rect fill="url(#particles)" height="100%" width="100%"></rect>
+      </svg>
+    </div>
+    <div class="relative z-10 text-center px-4 max-w-5xl">
+      <h1 class="text-[12vw] md:text-[10rem] font-display leading-none mb-4 tracking-tighter text-bone drop-shadow-2xl">JAIVIEN KENDRICK</h1>
+      <div class="h-8 mb-8 overflow-hidden font-label text-crimson text-sm md:text-xl tracking-[0.2em] uppercase font-bold">
+        <span class="block">AI Strategy Consultant / Systems Architect / Operations Analyst @ Morgan Stanley / Founder, More Life Consulting</span>
       </div>
-      <div class="hidden md:flex items-center gap-8 font-label text-xs uppercase tracking-widest">
-        <a class="text-gray-400 hover:text-[#C41E3A] transition-colors duration-300" href="#about">About</a>
-        <a class="text-gray-400 hover:text-[#C41E3A] transition-colors duration-300" href="#experience">Experience</a>
-        <a class="text-gray-400 hover:text-[#C41E3A] transition-colors duration-300" href="#skills">Skills</a>
-        <a class="text-gray-400 hover:text-[#C41E3A] transition-colors duration-300" href="#projects">Projects</a>
-        <a class="text-gray-400 hover:text-[#C41E3A] transition-colors duration-300" href="#contact">Contact</a>
-      </div>
-      <button class="px-5 py-2 bg-crimson text-white font-bold text-sm tracking-tighter uppercase transition-all duration-300 ease-in-out hover:scale-105 active:scale-95 shadow-[0_0_16px_rgba(196,30,58,0.4)]">
-        Hire Me
-      </button>
-    </nav>
-  </header>
-
-  <main>
-
-    <!-- HERO SECTION -->
-    <section class="relative h-screen flex flex-col items-center justify-center overflow-hidden bg-void">
-      <div class="absolute inset-0 grid-bg opacity-20"></div>
-      <div class="absolute inset-0 pointer-events-none">
-        <svg class="opacity-30" height="100%" width="100%">
-          <pattern height="100" id="particles" patternUnits="userSpaceOnUse" width="100" x="0" y="0">
-            <circle cx="2" cy="2" fill="#C41E3A" r="1"></circle>
-            <circle cx="50" cy="80" fill="#C41E3A" r="1.5"></circle>
-            <circle cx="90" cy="10" fill="#C41E3A" r="1"></circle>
-          </pattern>
-          <rect fill="url(#particles)" height="100%" width="100%"></rect>
-        </svg>
-      </div>
-      <div class="relative z-10 text-center px-4 max-w-5xl">
-        <h1 class="text-[12vw] md:text-[10rem] font-display leading-none mb-4 tracking-tighter text-bone drop-shadow-2xl">
-          JAIVIEN KENDRICK
-        </h1>
-        <div class="h-8 mb-8 overflow-hidden font-label text-crimson text-sm md:text-xl tracking-[0.2em] uppercase font-bold">
-          <span class="block">AI Strategy Consultant / Systems Architect / Operations Analyst @ Morgan Stanley / Founder, More Life Consulting</span>
-        </div>
-        <div class="flex flex-col md:flex-row gap-4 justify-center items-center">
-          <a class="w-full md:w-auto px-8 py-4 bg-crimson text-bone font-bold uppercase tracking-widest hover:shadow-[0_0_25px_rgba(196,30,58,0.6)] transition-all" href="#projects">
-            View My Work
-          </a>
-          <a class="w-full md:w-auto px-8 py-4 border-2 border-bone text-bone font-bold uppercase tracking-widest hover:bg-bone hover:text-void transition-all" href="#">
-            Download Resume
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ABOUT SECTION -->
-    <section class="py-24 px-6 md:px-12 max-w-7xl mx-auto relative" id="about">
-      <div class="grid md:grid-cols-2 gap-16 items-center">
-        <div class="relative group">
-          <div class="absolute -inset-4 border-2 border-crimson/50 translate-x-4 translate-y-4 -z-10 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-500"></div>
-          <div class="aspect-square bg-neutral-900 border border-crimson/30 overflow-hidden">
-            <img
-              class="w-full h-full object-cover grayscale contrast-125 opacity-80 mix-blend-luminosity"
-              alt="Stylized portrait of Jaivien Kendrick in a corporate setting"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjvUWrolD_9yzjm2LefwpQmsSKEeYCE7MZuexdQ9V12ol_6pEpg1b48bbc1gBJQoqYaM9LjjeRN5yBLR01kVk1jER0zM3VGnoOZob1LlO4jT2CfCKOegp2GuwrnXp-OUc0SPfpMCB5DaU5C7oHyTdd1uAzRFSrxLmE5K82MntBu44PH-GVETyYi3WZKbyh-_D3s-uUbO1A3iYGskRXvakGsLAxSvNfr_nz738KE0KzlFuckFXsv8jucdmnZ83g6REeViv1U6x2Ug"
-            />
-          </div>
-        </div>
-        <div>
-          <span class="font-label text-crimson text-xs uppercase tracking-widest mb-4 block">Personal Objective</span>
-          <h2 class="text-5xl md:text-7xl font-headline font-extrabold mb-8 tracking-tighter leading-none">
-            Operator.<br/>Builder.<br/>Automator.
-          </h2>
-          <div class="grid grid-cols-2 gap-4">
-            <div class="glass-card p-6 crimson-border-glow">
-              <div class="text-3xl font-display text-crimson mb-1">40+ HRS/WK</div>
-              <div class="font-label text-[10px] text-gray-400 uppercase tracking-widest">Eliminated via Automation</div>
-            </div>
-            <div class="glass-card p-6 crimson-border-glow">
-              <div class="text-3xl font-display text-crimson mb-1">70%+ FASTER</div>
-              <div class="font-label text-[10px] text-gray-400 uppercase tracking-widest">Product Development</div>
-            </div>
-            <div class="glass-card p-6 crimson-border-glow">
-              <div class="text-3xl font-display text-crimson mb-1">$5K+ MONTHLY</div>
-              <div class="font-label text-[10px] text-gray-400 uppercase tracking-widest">Client Savings Secured</div>
-            </div>
-            <div class="glass-card p-6 crimson-border-glow">
-              <div class="text-3xl font-display text-crimson mb-1">20+ STUDENTS</div>
-              <div class="font-label text-[10px] text-gray-400 uppercase tracking-widest">Scholarships Supported</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- EXPERIENCE SECTION -->
-    <section class="py-24 bg-[#050505] relative overflow-hidden" id="experience">
-      <div class="max-w-5xl mx-auto px-6">
-        <h2 class="text-4xl font-headline font-extrabold mb-16 tracking-tighter text-center">Operational Deployment Timeline</h2>
-        <div class="relative space-y-12">
-          <div class="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-crimson/20 hidden md:block"></div>
-
-          <!-- Entry 1 -->
-          <div class="relative flex flex-col md:flex-row items-center justify-between gap-8 group">
-            <div class="w-full md:w-[45%] glass-card p-8 border-l-4 border-l-crimson">
-              <span class="font-label text-[10px] text-crimson font-bold uppercase tracking-widest">Present</span>
-              <h3 class="text-2xl font-headline font-bold mb-1">Morgan Stanley</h3>
-              <p class="text-sm font-label text-gray-400 mb-4 uppercase">Operations Analyst</p>
-              <p class="text-gray-300 text-sm leading-relaxed">Scaling institutional efficiency through strategic systems analysis and process automation. Bridging the gap between high-level operations and cutting-edge tech deployment.</p>
-            </div>
-            <div class="hidden md:flex items-center justify-center w-12 h-12 rounded-full bg-void border-2 border-crimson z-10">
-              <span class="material-symbols-outlined text-crimson text-sm">rocket_launch</span>
-            </div>
-            <div class="w-full md:w-[45%] hidden md:block"></div>
-          </div>
-
-          <!-- Entry 2 -->
-          <div class="relative flex flex-col md:flex-row-reverse items-center justify-between gap-8 group">
-            <div class="w-full md:w-[45%] glass-card p-8 border-l-4 border-l-crimson">
-              <span class="font-label text-[10px] text-crimson font-bold uppercase tracking-widest">Founder</span>
-              <h3 class="text-2xl font-headline font-bold mb-1">More Life Consulting</h3>
-              <p class="text-sm font-label text-gray-400 mb-4 uppercase">Systems Architecture &amp; Agency</p>
-              <p class="text-gray-300 text-sm leading-relaxed">Built and scaled an automation agency helping businesses reclaim time by deploying custom AI agents and complex no-code ecosystems.</p>
-            </div>
-            <div class="hidden md:flex items-center justify-center w-12 h-12 rounded-full bg-void border-2 border-crimson z-10">
-              <span class="material-symbols-outlined text-crimson text-sm">architecture</span>
-            </div>
-            <div class="w-full md:w-[45%] hidden md:block"></div>
-          </div>
-
-          <!-- Entry 3 -->
-          <div class="relative flex flex-col md:flex-row items-center justify-between gap-8 group">
-            <div class="w-full md:w-[45%] glass-card p-8 border-l-4 border-l-crimson">
-              <span class="font-label text-[10px] text-crimson font-bold uppercase tracking-widest">Rising Future Maker</span>
-              <h3 class="text-2xl font-headline font-bold mb-1">AT&amp;T</h3>
-              <p class="text-sm font-label text-gray-400 mb-4 uppercase">Emerging Tech Program</p>
-              <p class="text-gray-300 text-sm leading-relaxed">Selected as one of the nation's rising innovators, focusing on the intersection of digital infrastructure and community impact.</p>
-            </div>
-            <div class="hidden md:flex items-center justify-center w-12 h-12 rounded-full bg-void border-2 border-crimson z-10">
-              <span class="material-symbols-outlined text-crimson text-sm">signal_cellular_alt</span>
-            </div>
-            <div class="w-full md:w-[45%] hidden md:block"></div>
-          </div>
-
-          <!-- Entry 4 -->
-          <div class="relative flex flex-col md:flex-row-reverse items-center justify-between gap-8 group">
-            <div class="w-full md:w-[45%] glass-card p-8 border-l-4 border-l-crimson">
-              <span class="font-label text-[10px] text-crimson font-bold uppercase tracking-widest">Impact</span>
-              <h3 class="text-2xl font-headline font-bold mb-1">Kendrick Legacy Scholarship</h3>
-              <p class="text-sm font-label text-gray-400 mb-4 uppercase">Philanthropy &amp; Education</p>
-              <p class="text-gray-300 text-sm leading-relaxed">Directing resources to support the next generation of builders and scholars at UMD and beyond.</p>
-            </div>
-            <div class="hidden md:flex items-center justify-center w-12 h-12 rounded-full bg-void border-2 border-crimson z-10">
-              <span class="material-symbols-outlined text-crimson text-sm">school</span>
-            </div>
-            <div class="w-full md:w-[45%] hidden md:block"></div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- SKILLS SECTION -->
-    <section class="py-24 px-6 max-w-7xl mx-auto" id="skills">
-      <h2 class="text-4xl font-headline font-extrabold mb-16 tracking-tighter text-center">Tech Stack &amp; Armament</h2>
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-
-        <div class="p-8 glass-card crimson-border-glow">
-          <span class="material-symbols-outlined text-crimson mb-4">psychology</span>
-          <h3 class="font-label font-bold text-sm tracking-widest uppercase mb-6">AI &amp; Automation</h3>
-          <div class="flex flex-wrap gap-2">
-            <span class="px-3 py-1 bg-void border border-crimson/20 text-[10px] font-bold uppercase hover:bg-crimson hover:text-white transition-colors cursor-default">Make.com</span>
-            <span class="px-3 py-1 bg-void border border-crimson/20 text-[10px] font-bold uppercase hover:bg-crimson hover:text-white transition-colors cursor-default">n8n</span>
-            <span class="px-3 py-1 bg-void border border-crimson/20 text-[10px] font-bold uppercase hover:bg-crimson hover:text-white transition-colors cursor-default">LLM Ops</span>
-            <span class="px-3 py-1 bg-void border border-crimson/20 text-[10px] font-bold uppercase hover:bg-crimson hover:text-white transition-colors cursor-default">Custom Agents</span>
-          </div>
-        </div>
-
-        <div class="p-8 glass-card crimson-border-glow">
-          <span class="material-symbols-outlined text-crimson mb-4">database</span>
-          <h3 class="font-label font-bold text-sm tracking-widest uppercase mb-6">Data &amp; Ops</h3>
-          <div class="flex flex-wrap gap-2">
-            <span class="px-3 py-1 bg-void border border-crimson/20 text-[10px] font-bold uppercase hover:bg-crimson hover:text-white transition-colors cursor-default">Alteryx</span>
-            <span class="px-3 py-1 bg-void border border-crimson/20 text-[10px] font-bold uppercase hover:bg-crimson hover:text-white transition-colors cursor-default">UiPath</span>
-            <span class="px-3 py-1 bg-void border border-crimson/20 text-[10px] font-bold uppercase hover:bg-crimson hover:text-white transition-colors cursor-default">SQL</span>
-            <span class="px-3 py-1 bg-void border border-crimson/20 text-[10px] font-bold uppercase hover:bg-crimson hover:text-white transition-colors cursor-default">BPMN</span>
-          </div>
-        </div>
-
-        <div class="p-8 glass-card crimson-border-glow">
-          <span class="material-symbols-outlined text-crimson mb-4">business_center</span>
-          <h3 class="font-label font-bold text-sm tracking-widest uppercase mb-6">Business Strategy</h3>
-          <div class="flex flex-wrap gap-2">
-            <span class="px-3 py-1 bg-void border border-crimson/20 text-[10px] font-bold uppercase hover:bg-crimson hover:text-white transition-colors cursor-default">AI Strategy</span>
-            <span class="px-3 py-1 bg-void border border-crimson/20 text-[10px] font-bold uppercase hover:bg-crimson hover:text-white transition-colors cursor-default">Ops Analysis</span>
-            <span class="px-3 py-1 bg-void border border-crimson/20 text-[10px] font-bold uppercase hover:bg-crimson hover:text-white transition-colors cursor-default">Unit Economics</span>
-          </div>
-        </div>
-
-        <div class="p-8 glass-card crimson-border-glow">
-          <span class="material-symbols-outlined text-crimson mb-4">terminal</span>
-          <h3 class="font-label font-bold text-sm tracking-widest uppercase mb-6">Dev Tools</h3>
-          <div class="flex flex-wrap gap-2">
-            <span class="px-3 py-1 bg-void border border-crimson/20 text-[10px] font-bold uppercase hover:bg-crimson hover:text-white transition-colors cursor-default">Claude Code</span>
-            <span class="px-3 py-1 bg-void border border-crimson/20 text-[10px] font-bold uppercase hover:bg-crimson hover:text-white transition-colors cursor-default">Python</span>
-            <span class="px-3 py-1 bg-void border border-crimson/20 text-[10px] font-bold uppercase hover:bg-crimson hover:text-white transition-colors cursor-default">React</span>
-            <span class="px-3 py-1 bg-void border border-crimson/20 text-[10px] font-bold uppercase hover:bg-crimson hover:text-white transition-colors cursor-default">Git</span>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- PROJECTS BENTO GRID -->
-    <section class="py-24 px-6 max-w-7xl mx-auto" id="projects">
-      <h2 class="text-4xl font-headline font-extrabold mb-16 tracking-tighter text-center">Operational Portfolio</h2>
-      <div class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-6 h-auto md:h-[800px]">
-
-        <!-- Project 1: Large Bento -->
-        <div class="md:col-span-2 md:row-span-1 glass-card p-8 group relative overflow-hidden flex flex-col justify-end crimson-border-glow">
-          <div class="absolute inset-0 bg-neutral-900 -z-10">
-            <img class="w-full h-full object-cover opacity-20 group-hover:scale-110 group-hover:opacity-40 transition-all duration-700" alt="Futuristic multi-agent AI neural network visualization" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD43O130OH68497QD8mFYxoc2oDag2Y0qs_Gn2D0jHh_ZOzdwE98l22xIpzxJ0P0XLGIgKi6-yVBN97uuUkTWffzZShM_EZSbzY135VJxjT3zyuGs9S5tuheDJT_6LefJKx4UoIa6ONgCj7PrOqwlrnqV_PFUVqurSLIOPXuE4tGUcV_9LVPlnAQegBxP4Z0ZNVtI9dGLyZcWmnEoTXbBG_ZmqLboENs0YcstD6IrwStZY22ejlVrVIjPDn7_4WBgJveUqdlnVoOQ"/>
-          </div>
-          <span class="font-label text-[10px] text-crimson font-bold uppercase tracking-widest mb-2">AI Infrastructure</span>
-          <h3 class="text-4xl font-display mb-2">OPENCLAW</h3>
-          <p class="text-sm text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-4 group-hover:translate-y-0 duration-300">Multi-agent AI ecosystem for autonomous task orchestration and business processing.</p>
-        </div>
-
-        <!-- Project 2 -->
-        <div class="md:col-span-1 md:row-span-1 glass-card p-8 group relative overflow-hidden flex flex-col justify-end crimson-border-glow">
-          <div class="absolute inset-0 bg-neutral-900 -z-10">
-            <img class="w-full h-full object-cover opacity-20 group-hover:scale-110 transition-all duration-700" alt="Modern corporate architectural lines in monochrome" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB72Gg5vw1-9dTWTkHCJESXDb9lhbiVRuCGKkmlbsV_gBHJTbOVnQEV3H--v0hefNgJLyC8h4DgBfewYtrmy9_gfTskF8vhxYzornp1BLmYaCzKSnVCrmhlrSCNZ_UoUGzMUx6GRnvHAKEHzjUM4IJci0p1EzVEgfzxlfoG59bH7-nRZsv4H6Iqc7yyruEyFrZ_ig8erfzy0qPY67XyhNdVx4T6wxpt1lKTchcoHZJclXNjXM5Y5xLzxLPOHdS71hn5IRVDi5hhnw"/>
-          </div>
-          <span class="font-label text-[10px] text-crimson font-bold uppercase tracking-widest mb-2">Agency</span>
-          <h3 class="text-2xl font-display mb-2">MORE LIFE CONSULTING</h3>
-        </div>
-
-        <!-- Project 3 -->
-        <div class="md:col-span-1 md:row-span-1 glass-card p-8 group relative overflow-hidden flex flex-col justify-end crimson-border-glow">
-          <div class="absolute inset-0 bg-neutral-900 -z-10">
-            <img class="w-full h-full object-cover opacity-20 group-hover:scale-110 transition-all duration-700" alt="Abstract financial data flow and literacy symbols" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCU4sJRphJB9QYyRa9bZmikk8JK0niZfeNEU6F2C2lwdM8jkful49udkACQ1MLaIwkklNKnIHiofHqeIQkNwrYHCP50RA-sQCZVXSca4i1nRE7_qfGARwlHw1R2JNm2BFMEVMMtoce-Ix4liSyuZqz9woKAUdXjUjXTKq__8IfU8epfpDk7LLF1ENf-_GkYPRSNNZi7ZxPFwGT-Zqiyvzvl1SWYIqi_wn1-YtmYff14H7r5RwcbHMdkNQcBi0puq1PFfdpJx3ZXKA"/>
-          </div>
-          <span class="font-label text-[10px] text-crimson font-bold uppercase tracking-widest mb-2">Social Impact</span>
-          <h3 class="text-2xl font-display mb-2">AIDSMART</h3>
-        </div>
-
-        <!-- Project 4 -->
-        <div class="md:col-span-1 md:row-span-1 glass-card p-8 group relative overflow-hidden flex flex-col justify-end crimson-border-glow">
-          <div class="absolute inset-0 bg-neutral-900 -z-10">
-            <img class="w-full h-full object-cover opacity-20 group-hover:scale-110 transition-all duration-700" alt="Cybersecurity terminal and matrix elements" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC81lY9050s-zBUAEu-Ejy3S1bBP0v7tmMAyl8Kzi6K-hUZ0z0aSY6t1Plfkzdq6pK71fRdAEeJkw0v45nsC4M6_uP-AUDNKtQU0NpmKho5m2sdFRpVrNd_SVVmxlSOlEWfrIZ3diizzUeLSd6he9oQHbFmRW6OOC76vgfduVubODLEcRUkf7M-dAm03vOpgZ_az87xNYT85c62LX4M0NV-b-eqwku6_W6IS8opOe_YQZZ8zBZzqyLLQydldDBUoi_9RClGl0R4hA"/>
-          </div>
-          <span class="font-label text-[10px] text-crimson font-bold uppercase tracking-widest mb-2">Internal Tools</span>
-          <h3 class="text-2xl font-display mb-2">MISSION CONTROL</h3>
-        </div>
-
-        <!-- Project 5: Large Bento -->
-        <div class="md:col-span-2 md:row-span-1 glass-card p-8 group relative overflow-hidden flex flex-col justify-end crimson-border-glow">
-          <div class="absolute inset-0 bg-neutral-900 -z-10">
-            <img class="w-full h-full object-cover opacity-20 group-hover:scale-110 transition-all duration-700" alt="Minimalist book cover design mockup" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWRTtEdGHU80NFaawGXMcQNFFUEwFvkuq1Ii-CnZ_y-wYH4JOncy8nCO1pS7yqgnNTgZfW1wl0MeSMTJyaMhziyCxkWb7XdzglspjYaxzTskiBNnZvMwWjPfLpCsUABwouuritHhI1YXxbcrlTHd8U8icknCv9r1v6uec3plCJ1WEzp7r_GDazMc8Vv-njccIdeBRfOK8PXURJq2o8NlInDMectPBRjq3OdgQtqjmr_U1416G9k8vcfXbM2XKMud8-nQBVLAQD3Q"/>
-          </div>
-          <span class="font-label text-[10px] text-crimson font-bold uppercase tracking-widest mb-2">Author</span>
-          <h3 class="text-4xl font-display mb-2">WINNING WITH AI</h3>
-          <p class="text-sm text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-4 group-hover:translate-y-0 duration-300">A strategic guide to implementing generative AI within small to mid-sized operations.</p>
-        </div>
-
-        <!-- Project 6 -->
-        <div class="md:col-span-1 md:row-span-1 glass-card p-8 group relative overflow-hidden flex flex-col justify-end crimson-border-glow">
-          <div class="absolute inset-0 bg-neutral-900 -z-10">
-            <img class="w-full h-full object-cover opacity-20 group-hover:scale-110 transition-all duration-700" alt="Vending machine hardware and digital interface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyjqmsUkdEZqkxHs_7amJ0UYMs0C82MRvoiZTtzXblm0M1rgounahh8LZNGlKZCQkuaYYJmgaGCpLk7bVn4eoOkQzwZgwZukViM-_l-0VXNVsAAmH7eT6aaEVNJ5RaOg0vZynwNR0aUNUv_ROFfQx6Kc7-xaoIIhupL7e-XA-Za8-QaS-yx6_Slr_p3RwAsQXUvGd6Flo0PvbieLcpVw5GSl7YV50Dywf2lHkBavBkidb-7pPzlqk3Qv9-HCWHkHOYy410gDYAkw"/>
-          </div>
-          <span class="font-label text-[10px] text-crimson font-bold uppercase tracking-widest mb-2">Hardware/Retail</span>
-          <h3 class="text-2xl font-display mb-2">NICOTINE VENDING</h3>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- EDUCATION SECTION -->
-    <section class="py-24 bg-void border-y border-crimson/10">
-      <div class="max-w-3xl mx-auto px-6 text-center">
-        <span class="font-label text-crimson text-[10px] font-bold uppercase tracking-widest mb-4 block">Academic Foundation</span>
-        <h2 class="text-3xl font-headline font-bold mb-2">University of Maryland, College Park</h2>
-        <p class="text-xl font-label text-gray-400">B.S. Business Administration</p>
-        <div class="mt-8 flex justify-center items-center gap-4 text-xs font-label text-gray-500 uppercase tracking-widest">
-          <span>Smith School of Business</span>
-          <span class="w-1 h-1 bg-crimson rounded-full"></span>
-          <span>Class of 2024</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT SECTION -->
-    <section class="py-24 px-6 md:px-12 bg-void relative" id="contact">
-      <div class="max-w-7xl mx-auto">
-        <div class="grid md:grid-cols-2 gap-16">
-          <div>
-            <h2 class="text-6xl md:text-8xl font-headline font-extrabold mb-12 tracking-tighter leading-none">
-              Let's Build<br/><span class="text-crimson">Something.</span>
-            </h2>
-            <div class="space-y-6 font-label">
-              <div class="flex items-center gap-4 group">
-                <span class="material-symbols-outlined text-crimson">mail</span>
-                <a class="text-bone hover:text-crimson transition-colors" href="mailto:jkendrick0610@gmail.com">jkendrick0610@gmail.com</a>
-              </div>
-              <div class="flex items-center gap-4 group">
-                <span class="material-symbols-outlined text-crimson">call</span>
-                <a class="text-bone hover:text-crimson transition-colors" href="tel:6095005660">(609) 500-5660</a>
-              </div>
-              <div class="flex items-center gap-4 group">
-                <span class="material-symbols-outlined text-crimson">share</span>
-                <a class="text-bone hover:text-crimson transition-colors" href="#">LinkedIn / JaivienKendrick</a>
-              </div>
-            </div>
-          </div>
-          <div class="glass-card p-10 border-l-4 border-l-crimson">
-            <form class="space-y-6">
-              <div>
-                <label class="block font-label text-[10px] uppercase tracking-widest text-gray-400 mb-2">Transmission From</label>
-                <input class="w-full bg-void border-0 border-b border-crimson/30 focus:border-crimson focus:ring-0 text-bone placeholder:text-gray-700 transition-all font-body" placeholder="Your Name" type="text"/>
-              </div>
-              <div>
-                <label class="block font-label text-[10px] uppercase tracking-widest text-gray-400 mb-2">Direct Channel</label>
-                <input class="w-full bg-void border-0 border-b border-crimson/30 focus:border-crimson focus:ring-0 text-bone placeholder:text-gray-700 transition-all font-body" placeholder="email@address.com" type="email"/>
-              </div>
-              <div>
-                <label class="block font-label text-[10px] uppercase tracking-widest text-gray-400 mb-2">Briefing Details</label>
-                <textarea class="w-full bg-void border-0 border-b border-crimson/30 focus:border-crimson focus:ring-0 text-bone placeholder:text-gray-700 transition-all font-body" placeholder="Describe the mission..." rows="4"></textarea>
-              </div>
-              <button class="w-full py-4 bg-crimson text-bone font-bold uppercase tracking-widest hover:shadow-[0_0_20px_rgba(196,30,58,0.5)] transition-all" type="submit">
-                Deploy Message
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- Footer -->
-  <footer class="bg-[#0a0a12] w-full py-12 border-t border-[#ff2d78]/20">
-    <div class="flex flex-col md:flex-row justify-between items-center px-8 gap-4 max-w-7xl mx-auto">
-      <div class="text-[#C41E3A] font-bold font-headline">JK</div>
-      <p class="font-['Space_Grotesk'] text-xs uppercase tracking-widest text-gray-500">
-        &copy; 2024 Jaivien Kendrick. Built for the Neon Shallows.
-      </p>
-      <div class="flex gap-6">
-        <a class="font-['Space_Grotesk'] text-xs uppercase tracking-widest text-gray-500 hover:text-[#00ffcc] hover:drop-shadow-[0_0_8px_rgba(0,255,204,0.5)] transition-opacity duration-200" href="#">LinkedIn</a>
-        <a class="font-['Space_Grotesk'] text-xs uppercase tracking-widest text-gray-500 hover:text-[#00ffcc] hover:drop-shadow-[0_0_8px_rgba(0,255,204,0.5)] transition-opacity duration-200" href="#">GitHub</a>
-        <a class="font-['Space_Grotesk'] text-xs uppercase tracking-widest text-gray-500 hover:text-[#00ffcc] hover:drop-shadow-[0_0_8px_rgba(0,255,204,0.5)] transition-opacity duration-200" href="#">Codepen</a>
+      <div class="flex flex-col md:flex-row gap-4 justify-center items-center">
+        <a class="w-full md:w-auto px-8 py-4 bg-crimson text-bone font-bold uppercase tracking-widest hover:shadow-[0_0_25px_rgba(196,30,58,0.6)] transition-all" href="#projects">View My Work</a>
+        <button onclick="openResumeModal()" class="w-full md:w-auto px-8 py-4 border-2 border-bone text-bone font-bold uppercase tracking-widest hover:bg-bone hover:text-void transition-all">View Resume</button>
       </div>
     </div>
-  </footer>
+  </section>
 
+  <!-- ABOUT -->
+  <section class="py-24 px-6 md:px-12 max-w-7xl mx-auto relative" id="about">
+    <div class="grid md:grid-cols-2 gap-16 items-center">
+      <div class="relative group">
+        <div class="absolute -inset-4 border-2 border-crimson/50 translate-x-4 translate-y-4 -z-10 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-500"></div>
+        <div class="aspect-square bg-neutral-900 border border-crimson/30 overflow-hidden">
+          <img class="w-full h-full object-cover grayscale contrast-125 opacity-80 mix-blend-luminosity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjvUWrolD_9yzjm2LefwpQmsSKEeYCE7MZuexdQ9V12ol_6pEpg1b48bbc1gBJQoqYaM9LjjeRN5yBLR01kVk1jER0zM3VGnoOZob1LlO4jT2CfCKOegp2GuwrnXp-OUc0SPfpMCB5DaU5C7oHyTdd1uAzRFSrxLmE5K82MntBu44PH-GVETyYi3WZKbyh-_D3s-uUbO1A3iYGskRXvakGsLAxSvNfr_nz738KE0KzlFuckFXsv8jucdmnZ83g6REeViv1U6x2Ug" alt="Jaivien Kendrick"/>
+        </div>
+      </div>
+      <div>
+        <span class="font-label text-crimson text-xs uppercase tracking-widest mb-4 block">Personal Objective</span>
+        <h2 class="text-5xl md:text-7xl font-headline font-extrabold mb-8 tracking-tighter leading-none">Operator.<br/>Builder.<br/>Automator.</h2>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="glass-card p-6 crimson-border-glow"><div class="text-3xl font-display text-crimson mb-1">40+ HRS/WK</div><div class="font-label text-[10px] text-gray-400 uppercase tracking-widest">Eliminated via Automation</div></div>
+          <div class="glass-card p-6 crimson-border-glow"><div class="text-3xl font-display text-crimson mb-1">70%+ FASTER</div><div class="font-label text-[10px] text-gray-400 uppercase tracking-widest">Product Development</div></div>
+          <div class="glass-card p-6 crimson-border-glow"><div class="text-3xl font-display text-crimson mb-1">$5K+ MONTHLY</div><div class="font-label text-[10px] text-gray-400 uppercase tracking-widest">Client Savings Secured</div></div>
+          <div class="glass-card p-6 crimson-border-glow"><div class="text-3xl font-display text-crimson mb-1">20+ STUDENTS</div><div class="font-label text-[10px] text-gray-400 uppercase tracking-widest">Scholarships Supported</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="py-24 bg-[#050505] relative overflow-hidden" id="experience">
+    <div class="max-w-5xl mx-auto px-6">
+      <h2 class="text-4xl font-headline font-extrabold mb-16 tracking-tighter text-center">Operational Deployment Timeline</h2>
+      <div class="relative space-y-12">
+        <div class="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-crimson/20 hidden md:block"></div>
+        <div class="relative flex flex-col md:flex-row items-center justify-between gap-8 group">
+          <div class="w-full md:w-[45%] glass-card p-8 border-l-4 border-l-crimson">
+            <span class="font-label text-[10px] text-crimson font-bold uppercase tracking-widest">Present</span>
+            <h3 class="text-2xl font-headline font-bold mb-1">Morgan Stanley</h3>
+            <p class="text-sm font-label text-gray-400 mb-4 uppercase">Operations Analyst</p>
+            <p class="text-gray-300 text-sm leading-relaxed">Scaling institutional efficiency through strategic systems analysis and process automation. Bridging the gap between high-level operations and cutting-edge tech deployment.</p>
+          </div>
+          <div class="hidden md:flex items-center justify-center w-12 h-12 rounded-full bg-void border-2 border-crimson z-10"><span class="material-symbols-outlined text-crimson text-sm">rocket_launch</span></div>
+          <div class="w-full md:w-[45%] hidden md:block"></div>
+        </div>
+        <div class="relative flex flex-col md:flex-row-reverse items-center justify-between gap-8 group">
+          <div class="w-full md:w-[45%] glass-card p-8 border-l-4 border-l-crimson">
+            <span class="font-label text-[10px] text-crimson font-bold uppercase tracking-widest">Founder</span>
+            <h3 class="text-2xl font-headline font-bold mb-1">More Life Consulting</h3>
+            <p class="text-sm font-label text-gray-400 mb-4 uppercase">Systems Architecture &amp; Agency</p>
+            <p class="text-gray-300 text-sm leading-relaxed">Built and scaled an automation agency helping businesses reclaim time by deploying custom AI agents and complex no-code ecosystems.</p>
+          </div>
+          <div class="hidden md:flex items-center justify-center w-12 h-12 rounded-full bg-void border-2 border-crimson z-10"><span class="material-symbols-outlined text-crimson text-sm">architecture</span></div>
+          <div class="w-full md:w-[45%] hidden md:block"></div>
+        </div>
+        <div class="relative flex flex-col md:flex-row items-center justify-between gap-8 group">
+          <div class="w-full md:w-[45%] glass-card p-8 border-l-4 border-l-crimson">
+            <span class="font-label text-[10px] text-crimson font-bold uppercase tracking-widest">Rising Future Maker</span>
+            <h3 class="text-2xl font-headline font-bold mb-1">AT&amp;T</h3>
+            <p class="text-sm font-label text-gray-400 mb-4 uppercase">Emerging Tech Program</p>
+            <p class="text-gray-300 text-sm leading-relaxed">Selected as one of the nation's rising innovators, focusing on the intersection of digital infrastructure and community impact.</p>
+          </div>
+          <div class="hidden md:flex items-center justify-center w-12 h-12 rounded-full bg-void border-2 border-crimson z-10"><span class="material-symbols-outlined text-crimson text-sm">signal_cellular_alt</span></div>
+          <div class="w-full md:w-[45%] hidden md:block"></div>
+        </div>
+        <div class="relative flex flex-col md:flex-row-reverse items-center justify-between gap-8 group">
+          <div class="w-full md:w-[45%] glass-card p-8 border-l-4 border-l-crimson">
+            <span class="font-label text-[10px] text-crimson font-bold uppercase tracking-widest">Impact</span>
+            <h3 class="text-2xl font-headline font-bold mb-1">Kendrick Legacy Scholarship</h3>
+            <p class="text-sm font-label text-gray-400 mb-4 uppercase">Philanthropy &amp; Education</p>
+            <p class="text-gray-300 text-sm leading-relaxed">Directing resources to support the next generation of builders and scholars at UMD and beyond.</p>
+          </div>
+          <div class="hidden md:flex items-center justify-center w-12 h-12 rounded-full bg-void border-2 border-crimson z-10"><span class="material-symbols-outlined text-crimson text-sm">school</span></div>
+          <div class="w-full md:w-[45%] hidden md:block"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="py-24 px-6 max-w-7xl mx-auto" id="skills">
+    <h2 class="text-4xl font-headline font-extrabold mb-16 tracking-tighter text-center">Tech Stack &amp; Armament</h2>
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div class="p-8 glass-card crimson-border-glow">
+        <span class="material-symbols-outlined text-crimson mb-4">psychology</span>
+        <h3 class="font-label font-bold text-sm tracking-widest uppercase mb-6">AI &amp; Automation</h3>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-3 py-1 bg-void border border-crimson/20 text-[10px] font-bold uppercase hover:bg-crimson hover:text-white transition-colors cursor-default">Make.com</span>
+          <span class="px-3 py-1 bg-void border border-crimson/20 text-[10px] font-bold uppercase hover:bg-crimson hover:text-white transition-colors cursor-default">n8n</span>
+          <span class="px-3 py-1 bg-void border border-crimson/20 text-[10px] font-bold uppercase hover:bg-crimson hover:text-white transition-colors cursor-default">LLM Ops</span>
+          <span class="px-3 py-1 bg-void border border-crimson/20 text-[10px] font-bold uppercase hover:bg-crimson hover:text-white transition-colors cursor-default">Custom Agents</span>
+        </div>
+      </div>
+      <div class="p-8 glass-card crimson-border-glow">
+        <span class="material-symbols-outlined text-crimson mb-4">database</span>
+        <h3 class="font-label font-bold text-sm tracking-widest uppercase mb-6">Data &amp; Ops</h3>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-3 py-1 bg-void border border-crimson/20 text-[10px] font-bold uppercase hover:bg-crimson hover:text-white transition-colors cursor-default">Alteryx</span>
+          <span class="px-3 py-1 bg-void border border-crimson/20 text-[10px] font-bold uppercase hover:bg-crimson hover:text-white transition-colors cursor-default">UiPath</span>
+          <span class="px-3 py-1 bg-void border border-crimson/20 text-[10px] font-bold uppercase hover:bg-crimson hover:text-white transition-colors cursor-default">SQL</span>
+          <span class="px-3 py-1 bg-void border border-crimson/20 text-[10px] font-bold uppercase hover:bg-crimson hover:text-white transition-colors cursor-default">BPMN</span>
+        </div>
+      </div>
+      <div class="p-8 glass-card crimson-border-glow">
+        <span class="material-symbols-outlined text-crimson mb-4">business_center</span>
+        <h3 class="font-label font-bold text-sm tracking-widest uppercase mb-6">Business Strategy</h3>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-3 py-1 bg-void border border-crimson/20 text-[10px] font-bold uppercase hover:bg-crimson hover:text-white transition-colors cursor-default">AI Strategy</span>
+          <span class="px-3 py-1 bg-void border border-crimson/20 text-[10px] font-bold uppercase hover:bg-crimson hover:text-white transition-colors cursor-default">Ops Analysis</span>
+          <span class="px-3 py-1 bg-void border border-crimson/20 text-[10px] font-bold uppercase hover:bg-crimson hover:text-white transition-colors cursor-default">Unit Economics</span>
+        </div>
+      </div>
+      <div class="p-8 glass-card crimson-border-glow">
+        <span class="material-symbols-outlined text-crimson mb-4">terminal</span>
+        <h3 class="font-label font-bold text-sm tracking-widest uppercase mb-6">Dev Tools</h3>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-3 py-1 bg-void border border-crimson/20 text-[10px] font-bold uppercase hover:bg-crimson hover:text-white transition-colors cursor-default">Claude Code</span>
+          <span class="px-3 py-1 bg-void border border-crimson/20 text-[10px] font-bold uppercase hover:bg-crimson hover:text-white transition-colors cursor-default">Python</span>
+          <span class="px-3 py-1 bg-void border border-crimson/20 text-[10px] font-bold uppercase hover:bg-crimson hover:text-white transition-colors cursor-default">React</span>
+          <span class="px-3 py-1 bg-void border border-crimson/20 text-[10px] font-bold uppercase hover:bg-crimson hover:text-white transition-colors cursor-default">Git</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS BENTO -->
+  <section class="py-24 px-6 max-w-7xl mx-auto" id="projects">
+    <h2 class="text-4xl font-headline font-extrabold mb-16 tracking-tighter text-center">Operational Portfolio</h2>
+    <div class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-6 h-auto md:h-[800px]">
+      <div class="md:col-span-2 md:row-span-1 glass-card p-8 group relative overflow-hidden flex flex-col justify-end crimson-border-glow">
+        <div class="absolute inset-0 bg-neutral-900 -z-10"><img class="w-full h-full object-cover opacity-20 group-hover:scale-110 group-hover:opacity-40 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD43O130OH68497QD8mFYxoc2oDag2Y0qs_Gn2D0jHh_ZOzdwE98l22xIpzxJ0P0XLGIgKi6-yVBN97uuUkTWffzZShM_EZSbzY135VJxjT3zyuGs9S5tuheDJT_6LefJKx4UoIa6ONgCj7PrOqwlrnqV_PFUVqurSLIOPXuE4tGUcV_9LVPlnAQegBxP4Z0ZNVtI9dGLyZcWmnEoTXbBG_ZmqLboENs0YcstD6IrwStZY22ejlVrVIjPDn7_4WBgJveUqdlnVoOQ" alt="OpenClaw"/></div>
+        <span class="font-label text-[10px] text-crimson font-bold uppercase tracking-widest mb-2">AI Infrastructure</span>
+        <h3 class="text-4xl font-display mb-2">OPENCLAW</h3>
+        <p class="text-sm text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-4 group-hover:translate-y-0 duration-300">Multi-agent AI ecosystem for autonomous task orchestration and business processing.</p>
+      </div>
+      <div class="md:col-span-1 md:row-span-1 glass-card p-8 group relative overflow-hidden flex flex-col justify-end crimson-border-glow">
+        <div class="absolute inset-0 bg-neutral-900 -z-10"><img class="w-full h-full object-cover opacity-20 group-hover:scale-110 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB72Gg5vw1-9dTWTkHCJESXDb9lhbiVRuCGKkmlbsV_gBHJTbOVnQEV3H--v0hefNgJLyC8h4DgBfewYtrmy9_gfTskF8vhxYzornp1BLmYaCzKSnVCrmhlrSCNZ_UoUGzMUx6GRnvHAKEHzjUM4IJci0p1EzVEgfzxlfoG59bH7-nRZsv4H6Iqc7yyruEyFrZ_ig8erfzy0qPY67XyhNdVx4T6wxpt1lKTchcoHZJclXNjXM5Y5xLzxLPOHdS71hn5IRVDi5hhnw" alt="More Life Consulting"/></div>
+        <span class="font-label text-[10px] text-crimson font-bold uppercase tracking-widest mb-2">Agency</span>
+        <h3 class="text-2xl font-display mb-2">MORE LIFE CONSULTING</h3>
+      </div>
+      <div class="md:col-span-1 md:row-span-1 glass-card p-8 group relative overflow-hidden flex flex-col justify-end crimson-border-glow">
+        <div class="absolute inset-0 bg-neutral-900 -z-10"><img class="w-full h-full object-cover opacity-20 group-hover:scale-110 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCU4sJRphJB9QYyRa9bZmikk8JK0niZfeNEU6F2C2lwdM8jkful49udkACQ1MLaIwkklNKnIHiofHqeIQkNwrYHCP50RA-sQCZVXSca4i1nRE7_qfGARwlHw1R2JNm2BFMEVMMtoce-Ix4liSyuZqz9woKAUdXjUjXTKq__8IfU8epfpDk7LLF1ENf-_GkYPRSNNZi7ZxPFwGT-Zqiyvzvl1SWYIqi_wn1-YtmYff14H7r5RwcbHMdkNQcBi0puq1PFfdpJx3ZXKA" alt="AidSmart"/></div>
+        <span class="font-label text-[10px] text-crimson font-bold uppercase tracking-widest mb-2">Social Impact</span>
+        <h3 class="text-2xl font-display mb-2">AIDSMART</h3>
+      </div>
+      <div class="md:col-span-1 md:row-span-1 glass-card p-8 group relative overflow-hidden flex flex-col justify-end crimson-border-glow">
+        <div class="absolute inset-0 bg-neutral-900 -z-10"><img class="w-full h-full object-cover opacity-20 group-hover:scale-110 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC81lY9050s-zBUAEu-Ejy3S1bBP0v7tmMAyl8Kzi6K-hUZ0z0aSY6t1Plfkzdq6pK71fRdAEeJkw0v45nsC4M6_uP-AUDNKtQU0NpmKho5m2sdFRpVrNd_SVVmxlSOlEWfrIZ3diizzUeLSd6he9oQHbFmRW6OOC76vgfduVubODLEcRUkf7M-dAm03vOpgZ_az87xNYT85c62LX4M0NV-b-eqwku6_W6IS8opOe_YQZZ8zBZzqyLLQydldDBUoi_9RClGl0R4hA" alt="Mission Control"/></div>
+        <span class="font-label text-[10px] text-crimson font-bold uppercase tracking-widest mb-2">Internal Tools</span>
+        <h3 class="text-2xl font-display mb-2">MISSION CONTROL</h3>
+      </div>
+      <div class="md:col-span-2 md:row-span-1 glass-card p-8 group relative overflow-hidden flex flex-col justify-end crimson-border-glow">
+        <div class="absolute inset-0 bg-neutral-900 -z-10"><img class="w-full h-full object-cover opacity-20 group-hover:scale-110 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWRTtEdGHU80NFaawGXMcQNFFUEwFvkuq1Ii-CnZ_y-wYH4JOncy8nCO1pS7yqgnNTgZfW1wl0MeSMTJyaMhziyCxkWb7XdzglspjYaxzTskiBNnZvMwWjPfLpCsUABwouuritHhI1YXxbcrlTHd8U8icknCv9r1v6uec3plCJ1WEzp7r_GDazMc8Vv-njccIdeBRfOK8PXURJq2o8NlInDMectPBRjq3OdgQtqjmr_U1416G9k8vcfXbM2XKMud8-nQBVLAQD3Q" alt="Winning With AI"/></div>
+        <span class="font-label text-[10px] text-crimson font-bold uppercase tracking-widest mb-2">Author</span>
+        <h3 class="text-4xl font-display mb-2">WINNING WITH AI</h3>
+        <p class="text-sm text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-4 group-hover:translate-y-0 duration-300">A strategic guide to implementing generative AI within small to mid-sized operations.</p>
+      </div>
+      <div class="md:col-span-1 md:row-span-1 glass-card p-8 group relative overflow-hidden flex flex-col justify-end crimson-border-glow">
+        <div class="absolute inset-0 bg-neutral-900 -z-10"><img class="w-full h-full object-cover opacity-20 group-hover:scale-110 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyjqmsUkdEZqkxHs_7amJ0UYMs0C82MRvoiZTtzXblm0M1rgounahh8LZNGlKZCQkuaYYJmgaGCpLk7bVn4eoOkQzwZgwZukViM-_l-0VXNVsAAmH7eT6aaEVNJ5RaOg0vZynwNR0aUNUv_ROFfQx6Kc7-xaoIIhupL7e-XA-Za8-QaS-yx6_Slr_p3RwAsQXUvGd6Flo0PvbieLcpVw5GSl7YV50Dywf2lHkBavBkidb-7pPzlqk3Qv9-HCWHkHOYy410gDYAkw" alt="Nicotine Vending"/></div>
+        <span class="font-label text-[10px] text-crimson font-bold uppercase tracking-widest mb-2">Hardware/Retail</span>
+        <h3 class="text-2xl font-display mb-2">NICOTINE VENDING</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section class="py-24 bg-void border-y border-crimson/10">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+      <span class="font-label text-crimson text-[10px] font-bold uppercase tracking-widest mb-4 block">Academic Foundation</span>
+      <h2 class="text-3xl font-headline font-bold mb-2">University of Maryland, College Park</h2>
+      <p class="text-xl font-label text-gray-400">B.S. Business Administration</p>
+      <div class="mt-8 flex justify-center items-center gap-4 text-xs font-label text-gray-500 uppercase tracking-widest">
+        <span>Smith School of Business</span>
+        <span class="w-1 h-1 bg-crimson rounded-full"></span>
+        <span>Class of 2025</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="py-24 px-6 md:px-12 bg-void relative" id="contact">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-16">
+        <div>
+          <h2 class="text-6xl md:text-8xl font-headline font-extrabold mb-12 tracking-tighter leading-none">Let's Build<br/><span class="text-crimson">Something.</span></h2>
+          <div class="space-y-6 font-label">
+            <div class="flex items-center gap-4"><span class="material-symbols-outlined text-crimson">mail</span><a class="text-bone hover:text-crimson transition-colors" href="mailto:jkendrick0610@gmail.com">jkendrick0610@gmail.com</a></div>
+            <div class="flex items-center gap-4"><span class="material-symbols-outlined text-crimson">call</span><a class="text-bone hover:text-crimson transition-colors" href="tel:6095005660">(609) 500-5660</a></div>
+            <div class="flex items-center gap-4"><span class="material-symbols-outlined text-crimson">share</span><a class="text-bone hover:text-crimson transition-colors" href="#">LinkedIn / JaivienKendrick</a></div>
+          </div>
+        </div>
+        <div class="glass-card p-10 border-l-4 border-l-crimson">
+          <form class="space-y-6">
+            <div>
+              <label class="block font-label text-[10px] uppercase tracking-widest text-gray-400 mb-2">Transmission From</label>
+              <input class="w-full bg-void border-0 border-b border-crimson/30 focus:border-crimson focus:ring-0 text-bone placeholder:text-gray-700 transition-all font-body" placeholder="Your Name" type="text"/>
+            </div>
+            <div>
+              <label class="block font-label text-[10px] uppercase tracking-widest text-gray-400 mb-2">Direct Channel</label>
+              <input class="w-full bg-void border-0 border-b border-crimson/30 focus:border-crimson focus:ring-0 text-bone placeholder:text-gray-700 transition-all font-body" placeholder="email@address.com" type="email"/>
+            </div>
+            <div>
+              <label class="block font-label text-[10px] uppercase tracking-widest text-gray-400 mb-2">Briefing Details</label>
+              <textarea class="w-full bg-void border-0 border-b border-crimson/30 focus:border-crimson focus:ring-0 text-bone placeholder:text-gray-700 transition-all font-body" placeholder="Describe the mission..." rows="4"></textarea>
+            </div>
+            <button class="w-full py-4 bg-crimson text-bone font-bold uppercase tracking-widest hover:shadow-[0_0_20px_rgba(196,30,58,0.5)] transition-all">Deploy Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="bg-[#0a0a12] w-full py-12 border-t border-[#ff2d78]/20">
+  <div class="flex flex-col md:flex-row justify-between items-center px-8 gap-4 max-w-7xl mx-auto">
+    <div class="text-[#C41E3A] font-bold font-headline">JK</div>
+    <p class="font-label text-xs uppercase tracking-widest text-gray-500">© 2025 Jaivien Kendrick. Built for the Neon Shallows.</p>
+    <div class="flex gap-6">
+      <a class="font-label text-xs uppercase tracking-widest text-gray-500 hover:text-[#00ffcc] hover:drop-shadow-[0_0_8px_rgba(0,255,204,0.5)] transition-all duration-200" href="#">LinkedIn</a>
+      <a class="font-label text-xs uppercase tracking-widest text-gray-500 hover:text-[#00ffcc] hover:drop-shadow-[0_0_8px_rgba(0,255,204,0.5)] transition-all duration-200" href="#">GitHub</a>
+      <a class="font-label text-xs uppercase tracking-widest text-gray-500 hover:text-[#00ffcc] hover:drop-shadow-[0_0_8px_rgba(0,255,204,0.5)] transition-all duration-200" href="#">Codepen</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════
+     MISSION DOSSIER — INTERACTIVE RESUME
+     ═══════════════════════════════════════════ -->
+<div id="resume-modal" aria-modal="true" role="dialog">
+  <div id="resume-progress"></div>
+  <div class="scan-line"></div>
+  <button id="modal-close" onclick="closeResumeModal()" aria-label="Close">✕</button>
+
+  <!-- Paper document (background right) -->
+  <div class="paper-wrapper">
+    <div class="paper-doc" id="paper-doc">
+      <div style="text-align:center;margin-bottom:12px;">
+        <h1>JAIVIEN KENDRICK</h1>
+        <div style="font-size:7px;color:#555;margin-top:2px;">AI Strategy &amp; Business Operations Consultant</div>
+        <div style="font-size:6px;color:#888;margin-top:2px;">Baltimore, US · (609) 500-5660 · jkendrick0610@gmail.com</div>
+        <div style="width:100%;height:0.5px;background:#C41E3A;margin-top:6px;opacity:0.5;"></div>
+      </div>
+      <h2>Professional Summary</h2>
+      <p>AI Strategy &amp; Business Operations Consultant with 3 years of experience designing AI automation and operational systems that cut manual work by 40+ hours weekly and accelerate product development by 70%+. Skilled in automation architecture, API integrations, Alteryx, UiPath, and process analysis; delivers workflow redesigns that generate $5K+ monthly savings.</p>
+      <h2>Employment History</h2>
+      <h3>Operations Analyst — Morgan Stanley <span class="sub">Jul 2025 – Present</span></h3>
+      <ul>
+        <li>Strengthened operational integrity via risk event reviews and targeted controls.</li>
+        <li>Validated data quality to align workflows with SEC &amp; FINRA requirements.</li>
+        <li>Automated routine tasks using Alteryx and UiPath to accelerate reporting.</li>
+        <li>Building AI-powered training assistant to reduce new hire onboarding friction.</li>
+      </ul>
+      <h3>Founder &amp; AI Consultant — More Life Consulting <span class="sub">2023 – Present</span></h3>
+      <ul>
+        <li>Design AI automation systems eliminating 40+ hours of manual work weekly.</li>
+        <li>Reduced product development timelines from 10–12 months to under 3 months.</li>
+        <li>Deliver workflow redesigns generating $5,000+ monthly operational savings.</li>
+        <li>Consulted The James Brand and Virgent AI on digital systems strategy.</li>
+      </ul>
+      <h3>AT&amp;T Rising Future Maker <span class="sub">2022 – 2023</span></h3>
+      <ul>
+        <li>Led NBA All-Star Weekend merchandise collaboration driving brand visibility.</li>
+        <li>Organized community Hoop Fest events, improving community relations.</li>
+      </ul>
+      <h3>Founder — Kendrick Legacy Scholarship <span class="sub">2023 – Present</span></h3>
+      <ul><li>Community-funded scholarship supporting 20+ students; increased local sponsorships by 30%.</li></ul>
+      <h2>Education</h2>
+      <h3>University of Maryland, College Park</h3>
+      <p>B.S. Business Administration (Marketing) · May 2025 · Smith School of Business</p>
+      <h2>Skills</h2>
+      <p>AI Strategy · Automation Architecture · Operational Risk · Regulatory Compliance · Alteryx · UiPath · Power BI · Make.com · n8n · API Integrations · Python · React · SQL · Project Management · Cross-Functional Collaboration</p>
+      <div class="paper-stamp">REVIEWED &amp; VERIFIED</div>
+    </div>
+  </div>
+
+  <!-- Boot screen -->
+  <div id="boot-screen">
+    <div style="font-family:'Space Grotesk',monospace;font-size:11px;text-transform:uppercase;letter-spacing:4px;color:#C41E3A;">Accessing Mission Dossier...</div>
+    <div id="boot-status" style="font-family:'Space Grotesk',monospace;font-size:9px;color:rgba(196,30,58,0.4);margin-top:8px;letter-spacing:2px;">Initializing secure channel</div>
+    <div class="boot-bar-track"><div class="boot-bar-fill" id="boot-bar"></div></div>
+    <div style="font-family:'Bebas Neue',cursive;font-size:48px;color:rgba(196,30,58,0.07);margin-top:32px;letter-spacing:-1px;">JAIVIEN KENDRICK</div>
+  </div>
+
+  <!-- Scrollable content -->
+  <div class="modal-scroll" id="modal-scroll">
+
+    <!-- Hero -->
+    <div class="tx-section" style="padding-top:100px;min-height:100vh;display:flex;flex-direction:column;justify-content:center;">
+      <div class="tx-label">Dossier // Loaded</div>
+      <h1 class="glitch-text" style="font-family:'Bebas Neue',cursive;font-size:clamp(3rem,8vw,7rem);line-height:1;color:#F5F0E8;margin:16px 0;letter-spacing:-1px;">JAIVIEN<br/>KENDRICK</h1>
+      <p style="font-family:'Space Grotesk',monospace;font-size:11px;text-transform:uppercase;letter-spacing:4px;color:#C41E3A;margin-bottom:24px;">AI Strategy &amp; Business Operations Consultant</p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;font-family:'Space Grotesk',monospace;font-size:10px;color:rgba(245,240,232,0.45);text-transform:uppercase;letter-spacing:2px;">
+        <span>Baltimore, US</span>
+        <span style="color:rgba(196,30,58,0.4);">·</span>
+        <span>Morgan Stanley</span>
+        <span style="color:rgba(196,30,58,0.4);">·</span>
+        <span>More Life Consulting</span>
+      </div>
+      <div style="margin-top:56px;display:flex;align-items:center;gap:8px;font-family:'Space Grotesk',monospace;font-size:10px;color:rgba(245,240,232,0.25);letter-spacing:2px;">
+        <span>SCROLL TO EXPLORE</span>
+        <span style="animation:bounce 1.5s ease-in-out infinite;display:inline-block;">↓</span>
+      </div>
+    </div>
+
+    <!-- Summary -->
+    <div class="tx-section" style="min-height:70vh;display:flex;flex-direction:column;justify-content:center;">
+      <div class="tx-label">Transmission 01 // Objective</div>
+      <h2 style="font-family:'Sora',sans-serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;color:#F5F0E8;margin:16px 0 24px;letter-spacing:-0.5px;">Professional Summary</h2>
+      <div style="border-left:2px solid rgba(196,30,58,0.4);padding-left:24px;margin-bottom:40px;">
+        <p id="summary-typewriter" style="font-family:'Inter',sans-serif;font-size:15px;line-height:1.8;color:rgba(245,240,232,0.75);min-height:5em;"></p>
+        <span class="tw-cursor" id="tw-cursor"></span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
+        <div style="background:rgba(196,30,58,0.06);border:1px solid rgba(196,30,58,0.2);padding:20px;"><div style="font-family:'Bebas Neue',cursive;font-size:2rem;color:#C41E3A;">40+ HRS</div><div style="font-family:'Space Grotesk',monospace;font-size:9px;color:rgba(245,240,232,0.4);text-transform:uppercase;letter-spacing:2px;margin-top:4px;">Saved weekly via automation</div></div>
+        <div style="background:rgba(196,30,58,0.06);border:1px solid rgba(196,30,58,0.2);padding:20px;"><div style="font-family:'Bebas Neue',cursive;font-size:2rem;color:#C41E3A;">70%+</div><div style="font-family:'Space Grotesk',monospace;font-size:9px;color:rgba(245,240,232,0.4);text-transform:uppercase;letter-spacing:2px;margin-top:4px;">Faster product delivery</div></div>
+        <div style="background:rgba(196,30,58,0.06);border:1px solid rgba(196,30,58,0.2);padding:20px;"><div style="font-family:'Bebas Neue',cursive;font-size:2rem;color:#C41E3A;">$5K+</div><div style="font-family:'Space Grotesk',monospace;font-size:9px;color:rgba(245,240,232,0.4);text-transform:uppercase;letter-spacing:2px;margin-top:4px;">Monthly client savings</div></div>
+        <div style="background:rgba(196,30,58,0.06);border:1px solid rgba(196,30,58,0.2);padding:20px;"><div style="font-family:'Bebas Neue',cursive;font-size:2rem;color:#C41E3A;">3 YRS</div><div style="font-family:'Space Grotesk',monospace;font-size:9px;color:rgba(245,240,232,0.4);text-transform:uppercase;letter-spacing:2px;margin-top:4px;">Consulting experience</div></div>
+      </div>
+    </div>
+
+    <!-- Experience -->
+    <div class="tx-section">
+      <div class="tx-label">Transmission 02 // Deployment History</div>
+      <h2 style="font-family:'Sora',sans-serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;color:#F5F0E8;margin:16px 0 32px;letter-spacing:-0.5px;">Experience</h2>
+
+      <div class="job-card">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:12px;">
+          <div>
+            <div style="font-family:'Space Grotesk',monospace;font-size:9px;color:#C41E3A;text-transform:uppercase;letter-spacing:3px;margin-bottom:4px;">Present — Operations Analyst</div>
+            <h3 style="font-family:'Sora',sans-serif;font-size:1.4rem;font-weight:800;color:#F5F0E8;">Morgan Stanley</h3>
+          </div>
+          <div style="font-family:'Bebas Neue',cursive;font-size:2.5rem;color:rgba(196,30,58,0.12);line-height:1;user-select:none;">MS</div>
+        </div>
+        <p style="font-family:'Space Grotesk',monospace;font-size:9px;color:rgba(245,240,232,0.3);text-transform:uppercase;letter-spacing:2px;margin-bottom:16px;">Operations Risk &amp; Regulatory Control · Jul 2025 – Present</p>
+        <ul style="list-style:none;padding:0;font-family:'Inter',sans-serif;font-size:13px;color:rgba(245,240,232,0.7);line-height:1.7;">
+          <li style="padding:6px 0;border-bottom:1px solid rgba(196,30,58,0.08);display:flex;gap:10px;"><span style="color:#C41E3A;flex-shrink:0;">▸</span>Strengthened operational integrity via risk event reviews and targeted controls</li>
+          <li style="padding:6px 0;border-bottom:1px solid rgba(196,30,58,0.08);display:flex;gap:10px;"><span style="color:#C41E3A;flex-shrink:0;">▸</span>Validated data quality to align workflows with SEC &amp; FINRA requirements</li>
+          <li style="padding:6px 0;border-bottom:1px solid rgba(196,30,58,0.08);display:flex;gap:10px;"><span style="color:#C41E3A;flex-shrink:0;">▸</span>Automated routine tasks via Alteryx and UiPath to accelerate reporting</li>
+          <li style="padding:6px 0;display:flex;gap:10px;"><span style="color:#C41E3A;flex-shrink:0;">▸</span>Building AI-powered training assistant to reduce new hire onboarding friction</li>
+        </ul>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:16px;">
+          <span style="font-family:'Space Grotesk',monospace;font-size:8px;text-transform:uppercase;letter-spacing:1px;padding:3px 10px;border:1px solid rgba(196,30,58,0.25);color:rgba(196,30,58,0.7);">Alteryx</span>
+          <span style="font-family:'Space Grotesk',monospace;font-size:8px;text-transform:uppercase;letter-spacing:1px;padding:3px 10px;border:1px solid rgba(196,30,58,0.25);color:rgba(196,30,58,0.7);">UiPath</span>
+          <span style="font-family:'Space Grotesk',monospace;font-size:8px;text-transform:uppercase;letter-spacing:1px;padding:3px 10px;border:1px solid rgba(196,30,58,0.25);color:rgba(196,30,58,0.7);">AI Ops</span>
+          <span style="font-family:'Space Grotesk',monospace;font-size:8px;text-transform:uppercase;letter-spacing:1px;padding:3px 10px;border:1px solid rgba(196,30,58,0.25);color:rgba(196,30,58,0.7);">Regulatory Compliance</span>
+        </div>
+      </div>
+
+      <div class="job-card">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:12px;">
+          <div>
+            <div style="font-family:'Space Grotesk',monospace;font-size:9px;color:#C41E3A;text-transform:uppercase;letter-spacing:3px;margin-bottom:4px;">Founder &amp; AI Consultant</div>
+            <h3 style="font-family:'Sora',sans-serif;font-size:1.4rem;font-weight:800;color:#F5F0E8;">More Life Consulting</h3>
+          </div>
+          <div style="font-family:'Bebas Neue',cursive;font-size:2.5rem;color:rgba(196,30,58,0.12);line-height:1;user-select:none;">MLC</div>
+        </div>
+        <p style="font-family:'Space Grotesk',monospace;font-size:9px;color:rgba(245,240,232,0.3);text-transform:uppercase;letter-spacing:2px;margin-bottom:16px;">Systems Architecture &amp; Automation Agency · 2023 – Present</p>
+        <ul style="list-style:none;padding:0;font-family:'Inter',sans-serif;font-size:13px;color:rgba(245,240,232,0.7);line-height:1.7;">
+          <li style="padding:6px 0;border-bottom:1px solid rgba(196,30,58,0.08);display:flex;gap:10px;"><span style="color:#C41E3A;flex-shrink:0;">▸</span>Designed AI automation eliminating 40+ hours of manual work weekly for clients</li>
+          <li style="padding:6px 0;border-bottom:1px solid rgba(196,30,58,0.08);display:flex;gap:10px;"><span style="color:#C41E3A;flex-shrink:0;">▸</span>Compressed product development from 10–12 months to under 3 months (70%+ faster)</li>
+          <li style="padding:6px 0;border-bottom:1px solid rgba(196,30,58,0.08);display:flex;gap:10px;"><span style="color:#C41E3A;flex-shrink:0;">▸</span>Delivered $5,000+ monthly operational savings via workflow redesigns</li>
+          <li style="padding:6px 0;display:flex;gap:10px;"><span style="color:#C41E3A;flex-shrink:0;">▸</span>Consulted The James Brand &amp; Virgent AI on digital systems and operational strategy</li>
+        </ul>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:16px;">
+          <span style="font-family:'Space Grotesk',monospace;font-size:8px;text-transform:uppercase;letter-spacing:1px;padding:3px 10px;border:1px solid rgba(196,30,58,0.25);color:rgba(196,30,58,0.7);">Make.com</span>
+          <span style="font-family:'Space Grotesk',monospace;font-size:8px;text-transform:uppercase;letter-spacing:1px;padding:3px 10px;border:1px solid rgba(196,30,58,0.25);color:rgba(196,30,58,0.7);">n8n</span>
+          <span style="font-family:'Space Grotesk',monospace;font-size:8px;text-transform:uppercase;letter-spacing:1px;padding:3px 10px;border:1px solid rgba(196,30,58,0.25);color:rgba(196,30,58,0.7);">LLM Agents</span>
+          <span style="font-family:'Space Grotesk',monospace;font-size:8px;text-transform:uppercase;letter-spacing:1px;padding:3px 10px;border:1px solid rgba(196,30,58,0.25);color:rgba(196,30,58,0.7);">API Integrations</span>
+        </div>
+      </div>
+
+      <div class="job-card">
+        <div style="margin-bottom:12px;">
+          <div style="font-family:'Space Grotesk',monospace;font-size:9px;color:#C41E3A;text-transform:uppercase;letter-spacing:3px;margin-bottom:4px;">Rising Future Maker</div>
+          <h3 style="font-family:'Sora',sans-serif;font-size:1.4rem;font-weight:800;color:#F5F0E8;">AT&amp;T</h3>
+        </div>
+        <p style="font-family:'Space Grotesk',monospace;font-size:9px;color:rgba(245,240,232,0.3);text-transform:uppercase;letter-spacing:2px;margin-bottom:16px;">National Leadership Program · 2022 – 2023</p>
+        <ul style="list-style:none;padding:0;font-family:'Inter',sans-serif;font-size:13px;color:rgba(245,240,232,0.7);line-height:1.7;">
+          <li style="padding:6px 0;border-bottom:1px solid rgba(196,30,58,0.08);display:flex;gap:10px;"><span style="color:#C41E3A;flex-shrink:0;">▸</span>Led NBA All-Star Weekend merchandise collaboration driving measurable brand visibility</li>
+          <li style="padding:6px 0;display:flex;gap:10px;"><span style="color:#C41E3A;flex-shrink:0;">▸</span>Represented AT&amp;T at national conferences, expanding stakeholder networks</li>
+        </ul>
+      </div>
+
+      <div class="job-card">
+        <div style="margin-bottom:12px;">
+          <div style="font-family:'Space Grotesk',monospace;font-size:9px;color:#C41E3A;text-transform:uppercase;letter-spacing:3px;margin-bottom:4px;">Founder · Community Impact</div>
+          <h3 style="font-family:'Sora',sans-serif;font-size:1.4rem;font-weight:800;color:#F5F0E8;">Kendrick Legacy Scholarship</h3>
+        </div>
+        <p style="font-family:'Space Grotesk',monospace;font-size:9px;color:rgba(245,240,232,0.3);text-transform:uppercase;letter-spacing:2px;margin-bottom:16px;">Philanthropy &amp; Education · 2023 – Present</p>
+        <ul style="list-style:none;padding:0;font-family:'Inter',sans-serif;font-size:13px;color:rgba(245,240,232,0.7);line-height:1.7;">
+          <li style="padding:6px 0;display:flex;gap:10px;"><span style="color:#C41E3A;flex-shrink:0;">▸</span>Community-funded scholarship supporting 20+ students; increased local sponsorships by 30%</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Skills -->
+    <div class="tx-section" id="skills-tx-section">
+      <div class="tx-label">Transmission 03 // Capabilities</div>
+      <h2 style="font-family:'Sora',sans-serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;color:#F5F0E8;margin:16px 0 32px;letter-spacing:-0.5px;">Tech Stack &amp; Armament</h2>
+      <div style="margin-bottom:28px;"><div style="font-family:'Space Grotesk',monospace;font-size:9px;text-transform:uppercase;letter-spacing:3px;color:rgba(196,30,58,0.6);margin-bottom:12px;">AI &amp; Automation</div><div id="skills-ai"></div></div>
+      <div style="margin-bottom:28px;"><div style="font-family:'Space Grotesk',monospace;font-size:9px;text-transform:uppercase;letter-spacing:3px;color:rgba(196,30,58,0.6);margin-bottom:12px;">Data &amp; Operations</div><div id="skills-data"></div></div>
+      <div style="margin-bottom:28px;"><div style="font-family:'Space Grotesk',monospace;font-size:9px;text-transform:uppercase;letter-spacing:3px;color:rgba(196,30,58,0.6);margin-bottom:12px;">Business &amp; Strategy</div><div id="skills-biz"></div></div>
+      <div><div style="font-family:'Space Grotesk',monospace;font-size:9px;text-transform:uppercase;letter-spacing:3px;color:rgba(196,30,58,0.6);margin-bottom:12px;">Dev Tools</div><div id="skills-dev"></div></div>
+    </div>
+
+    <!-- Education -->
+    <div class="tx-section">
+      <div class="tx-label">Transmission 04 // Academic Intel</div>
+      <h2 style="font-family:'Sora',sans-serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;color:#F5F0E8;margin:16px 0 32px;letter-spacing:-0.5px;">Education</h2>
+      <div class="edu-card">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px;">
+          <div>
+            <div style="font-family:'Space Grotesk',monospace;font-size:9px;color:#C41E3A;text-transform:uppercase;letter-spacing:3px;margin-bottom:8px;">B.S. Business Administration</div>
+            <h3 style="font-family:'Sora',sans-serif;font-size:1.6rem;font-weight:800;color:#F5F0E8;margin-bottom:4px;">University of Maryland</h3>
+            <p style="font-family:'Space Grotesk',monospace;font-size:10px;color:rgba(245,240,232,0.4);text-transform:uppercase;letter-spacing:2px;">College Park, MD · Smith School of Business</p>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-family:'Bebas Neue',cursive;font-size:3rem;color:rgba(196,30,58,0.15);line-height:1;user-select:none;">UMD</div>
+            <div style="font-family:'Space Grotesk',monospace;font-size:9px;color:rgba(245,240,232,0.3);text-transform:uppercase;letter-spacing:2px;">Class of 2025</div>
+          </div>
+        </div>
+        <div style="margin-top:24px;padding-top:20px;border-top:1px solid rgba(196,30,58,0.15);">
+          <div style="font-family:'Space Grotesk',monospace;font-size:9px;color:rgba(245,240,232,0.3);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;">Concentration</div>
+          <p style="font-family:'Inter',sans-serif;font-size:14px;color:rgba(245,240,232,0.7);">Marketing · with focus on AI-driven business strategy and operations analysis</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="tx-section" style="padding-bottom:80px;">
+      <div class="tx-label">Transmission 05 // Engage</div>
+      <h2 style="font-family:'Sora',sans-serif;font-size:clamp(2rem,4vw,3.5rem);font-weight:800;color:#F5F0E8;margin:16px 0 8px;letter-spacing:-1px;line-height:1.1;">
+        Ready to Build<br/><span style="color:#C41E3A;">Something Legendary?</span>
+      </h2>
+      <p style="font-family:'Inter',sans-serif;font-size:14px;color:rgba(245,240,232,0.45);margin-bottom:40px;line-height:1.7;">Download the full dossier or get in touch directly.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:16px;">
+        <a href="resume.pdf" download="Jaivien-Kendrick-Resume.pdf" class="modal-cta" style="background:#C41E3A;color:white;box-shadow:0 0 20px rgba(196,30,58,0.3);">
+          <span class="material-symbols-outlined" style="font-size:16px;">download</span>Download PDF
+        </a>
+        <button onclick="closeResumeModal();setTimeout(()=>document.getElementById('contact').scrollIntoView({behavior:'smooth'}),400);" class="modal-cta" style="background:transparent;border:1px solid rgba(245,240,232,0.2);color:#F5F0E8;">
+          <span class="material-symbols-outlined" style="font-size:16px;">mail</span>Contact Me
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// ── Open / Close ────────────────────────────────────────────────
+function openResumeModal() {
+  const modal = document.getElementById('resume-modal');
+  modal.classList.add('modal-open');
+  document.body.style.overflow = 'hidden';
+  runBootSequence();
+}
+
+function closeResumeModal() {
+  const modal = document.getElementById('resume-modal');
+  modal.style.opacity = '0';
+  modal.style.transition = 'opacity 0.4s ease';
+  setTimeout(() => {
+    modal.classList.remove('modal-open');
+    modal.style.opacity = '';
+    modal.style.transition = '';
+    document.body.style.overflow = '';
+    document.getElementById('modal-scroll').scrollTop = 0;
+    document.getElementById('resume-progress').style.width = '0';
+    document.querySelectorAll('.tx-section').forEach(s => s.classList.remove('revealed'));
+    skillsAnimated = false;
+    twDone = false;
+    document.getElementById('tw-cursor').style.display = 'inline-block';
+  }, 400);
+}
+
+document.getElementById('resume-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeResumeModal();
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && document.getElementById('resume-modal').classList.contains('modal-open')) closeResumeModal();
+});
+
+// ── Boot sequence ───────────────────────────────────────────────
+function runBootSequence() {
+  const bootScreen = document.getElementById('boot-screen');
+  const bootBar = document.getElementById('boot-bar');
+  const bootStatus = document.getElementById('boot-status');
+  const msgs = ['Establishing encrypted connection','Authenticating credentials','Decrypting mission dossier','Rendering operational profile','Access granted'];
+  bootScreen.style.opacity = '1';
+  bootScreen.style.display = 'flex';
+  bootBar.style.width = '0';
+  let idx = 0;
+  const iv = setInterval(() => { if (idx < msgs.length) bootStatus.textContent = msgs[idx++]; else clearInterval(iv); }, 250);
+  setTimeout(() => { bootBar.style.width = '100%'; }, 50);
+  setTimeout(() => {
+    bootScreen.classList.add('fade-out');
+    setTimeout(() => {
+      bootScreen.style.display = 'none';
+      bootScreen.classList.remove('fade-out');
+      document.querySelectorAll('.tx-section')[0].classList.add('revealed');
+    }, 500);
+  }, 1500);
+}
+
+// ── Scroll handler ──────────────────────────────────────────────
+const modalScroll = document.getElementById('modal-scroll');
+const progressBar = document.getElementById('resume-progress');
+const paperDoc = document.getElementById('paper-doc');
+let skillsAnimated = false;
+let twDone = false;
+
+modalScroll.addEventListener('scroll', () => {
+  const total = modalScroll.scrollHeight - modalScroll.clientHeight;
+  const pct = total > 0 ? (modalScroll.scrollTop / total) * 100 : 0;
+  progressBar.style.width = pct + '%';
+
+  // Paper 3D rotation parallax
+  const ratio = modalScroll.scrollTop / (total || 1);
+  const rY = -14 + ratio * 28;
+  const rX = 2 - ratio * 4;
+  const tY = -ratio * 80;
+  paperDoc.style.transform = `rotateY(${rY}deg) rotateX(${rX}deg) translateY(${tY}px)`;
+
+  // Reveal sections
+  document.querySelectorAll('.tx-section').forEach(section => {
+    const rect = section.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.88 && rect.bottom > 0) {
+      section.classList.add('revealed');
+      if (section.contains(document.getElementById('summary-typewriter')) && !twDone) {
+        twDone = true;
+        setTimeout(() => typeWriter(document.getElementById('summary-typewriter'),
+          'AI Strategy & Business Operations Consultant with 3 years of experience designing AI automation and operational systems that cut manual work by 40+ hours weekly and accelerate product development by 70%+. Skilled in automation architecture, API integrations, Alteryx, UiPath, and process analysis; delivers workflow redesigns that generate $5K+ monthly savings across HVAC, travel, startup, and regulated environments.',
+          16
+        ), 400);
+      }
+      if (section.id === 'skills-tx-section' && !skillsAnimated) {
+        skillsAnimated = true;
+        setTimeout(animateSkills, 300);
+      }
+    }
+  });
+});
+
+// ── Typewriter ──────────────────────────────────────────────────
+function typeWriter(el, text, speed) {
+  let i = 0;
+  el.textContent = '';
+  const cursor = document.getElementById('tw-cursor');
+  function tick() {
+    if (i < text.length) { el.textContent += text[i++]; setTimeout(tick, speed); }
+    else if (cursor) cursor.style.display = 'none';
+  }
+  tick();
+}
+
+// ── Skills ──────────────────────────────────────────────────────
+const SKILLS = {
+  'skills-ai':  ['Make.com','n8n','LLM Ops','Custom Agents','Replit','Cursor','Lovable','Prompt Engineering'],
+  'skills-data':['Alteryx','UiPath','SQL','Power BI','BPMN','Data Analysis','Process Mapping','Workflow Automation'],
+  'skills-biz': ['AI Strategy','Ops Analysis','Unit Economics','Regulatory Compliance','Project Management','Cross-Functional Collaboration'],
+  'skills-dev': ['Claude Code','Python','React','Git','API Integrations','Multi-API Architecture','No-Code Ecosystems']
+};
+function animateSkills() {
+  let delay = 0;
+  Object.entries(SKILLS).forEach(([id, skills]) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.innerHTML = '';
+    skills.forEach((s, i) => {
+      const chip = document.createElement('span');
+      chip.className = 'skill-chip';
+      chip.textContent = s;
+      el.appendChild(chip);
+      setTimeout(() => chip.classList.add('lit'), delay + i * 55);
+    });
+    delay += skills.length * 55 + 80;
+  });
+}
+
+// ── 3D card tilt ────────────────────────────────────────────────
+document.querySelectorAll('.job-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    const rX = ((e.clientY - r.top) / r.height - 0.5) * 10;
+    const rY = (0.5 - (e.clientX - r.left) / r.width) * 10;
+    card.style.transform = `perspective(1000px) rotateX(${rX}deg) rotateY(${rY}deg) translateZ(6px)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+  });
+});
+</script>
 </body>
 </html>
