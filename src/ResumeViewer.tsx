@@ -1,12 +1,12 @@
 /**
- * ResumeViewer — Command Center: Screen 2
+ * ResumeViewer — Mission Dossier
  *
  * The actual resume PDF is rendered as a 3D floating document in the
  * background. As the user scrolls, the camera orbits around the document
  * and a glowing highlight box illuminates the corresponding section.
  * Foreground text content overlays the experience.
  *
- * 3D Resume: 60% opacity, orbiting camera, section highlight overlays
+ * Color palette matches main site: Crimson #C41E3A / #ff2d78, Bone #F5F0E8
  */
 
 import { useState, useEffect, useRef, useMemo, Component, type ReactNode } from "react";
@@ -36,6 +36,11 @@ const SECTION_REGIONS = [
   { yStart: 0.910, yEnd: 0.958 },   // 7: Links / Contact
 ];
 
+// Site palette
+const CRIMSON  = "#C41E3A";
+const CRIMSON2 = "#ff2d78";
+const BONE     = "#F5F0E8";
+
 interface ResumeSection {
   id: string;
   number: string;
@@ -58,7 +63,7 @@ const sections: ResumeSection[] = [
       "AI Strategy & Business Operations Consultant with 3 years of experience designing AI automation and operational systems that cut manual work by 40+ hours weekly and accelerate product development by 70%+.",
       "Skilled in automation architecture, API integrations, Alteryx, UiPath, and process analysis; delivers workflow redesigns that generate $5K+ monthly savings and scale across HVAC, travel, startup, and regulated environments.",
     ],
-    accentColor: "#00ff88",
+    accentColor: CRIMSON,
   },
   {
     id: "morgan-stanley",
@@ -73,7 +78,7 @@ const sections: ResumeSection[] = [
       "Automated routine tasks using Alteryx and UiPath to accelerate operational workflows and reporting.",
       "Developing an AI-powered training assistant enabling new hires to conversationally query procedures, reducing onboarding friction and accelerating time-to-competency.",
     ],
-    accentColor: "#00ff88",
+    accentColor: CRIMSON,
   },
   {
     id: "more-life",
@@ -89,7 +94,7 @@ const sections: ResumeSection[] = [
       "Build LLM-powered agents, integrations, and internal tools using Replit, Cursor, Lovable, Make.com, n8n, and multi-API architectures.",
       "Consulted notable companies including The James Brand and Virgent AI on digital systems and operational strategy.",
     ],
-    accentColor: "#4a9eff",
+    accentColor: CRIMSON2,
   },
   {
     id: "att",
@@ -104,7 +109,7 @@ const sections: ResumeSection[] = [
       "Represented AT&T at national conferences to strengthen corporate presence and expand stakeholder networks.",
       "Developed engagement strategies that produced measurable improvements in brand recognition and community impact.",
     ],
-    accentColor: "#ffaa00",
+    accentColor: CRIMSON,
   },
   {
     id: "scholarship",
@@ -116,7 +121,7 @@ const sections: ResumeSection[] = [
     content: [
       "Built a community-funded scholarship awarding support to 20+ high school students, increasing local sponsorships by 30%.",
     ],
-    accentColor: "#00ff88",
+    accentColor: CRIMSON2,
   },
   {
     id: "skills",
@@ -130,7 +135,7 @@ const sections: ResumeSection[] = [
       "Workflow Optimization", "Project Management", "Problem Structuring", "Cross-Functional Collaboration",
       "Replit", "API Integrations", "Python", "React", "Git", "Cursor",
     ],
-    accentColor: "#4a9eff",
+    accentColor: CRIMSON,
   },
   {
     id: "education",
@@ -142,7 +147,7 @@ const sections: ResumeSection[] = [
       "B.S., Business Administration (Marketing)",
       "Robert H. Smith School of Business — Class of 2025",
     ],
-    accentColor: "#ffaa00",
+    accentColor: CRIMSON2,
   },
   {
     id: "contact",
@@ -152,7 +157,7 @@ const sections: ResumeSection[] = [
     content: [
       "Ready to deploy AI-powered systems, streamline operations, or architect something new? Open a secure channel.",
     ],
-    accentColor: "#00ff88",
+    accentColor: CRIMSON,
   },
 ];
 
@@ -214,7 +219,7 @@ function Particles({ count = 30 }: { count?: number; scrollProgress: number }) {
   return (
     <instancedMesh ref={mesh} args={[undefined, undefined, count]}>
       <sphereGeometry args={[1, 6, 6]} />
-      <meshStandardMaterial color="#00ff88" emissive="#00ff88" emissiveIntensity={2} transparent opacity={0.3} />
+      <meshStandardMaterial color={CRIMSON} emissive={CRIMSON} emissiveIntensity={1.5} transparent opacity={0.25} />
     </instancedMesh>
   );
 }
@@ -241,7 +246,7 @@ function SectionHighlight({ activeIndex, accentColor }: { activeIndex: number; a
     targetScaleY.current = highlightHeight;
     currentY.current += (targetY.current - currentY.current) * 0.06;
     currentScaleY.current += (targetScaleY.current - currentScaleY.current) * 0.06;
-    currentOpacity.current += (0.25 - currentOpacity.current) * 0.05;
+    currentOpacity.current += (0.22 - currentOpacity.current) * 0.05;
     meshRef.current.position.y = currentY.current;
     meshRef.current.scale.y = currentScaleY.current;
     meshRef.current.scale.x = RESUME_WIDTH * 0.95;
@@ -256,7 +261,7 @@ function SectionHighlight({ activeIndex, accentColor }: { activeIndex: number; a
         ref={materialRef}
         color={accentColor}
         transparent
-        opacity={0.2}
+        opacity={0.18}
         side={THREE.DoubleSide}
         depthWrite={false}
       />
@@ -300,7 +305,7 @@ function SectionHighlightBorder({ activeIndex, accentColor }: { activeIndex: num
 
   return (
     <lineSegments ref={lineRef} geometry={geometry} position={[0, 0, 0.03]}>
-      <lineBasicMaterial color={accentColor} transparent opacity={0.7} linewidth={1} />
+      <lineBasicMaterial color={accentColor} transparent opacity={0.8} linewidth={1} />
     </lineSegments>
   );
 }
@@ -343,11 +348,12 @@ function ResumeDocument({ activeIndex, accentColor }: {
       </mesh>
       <mesh position={[0, 0, -0.01]}>
         <planeGeometry args={[RESUME_WIDTH, RESUME_HEIGHT]} />
-        <meshStandardMaterial color="#0a1a0a" transparent opacity={0.3} side={THREE.DoubleSide} />
+        <meshStandardMaterial color="#1a0508" transparent opacity={0.3} side={THREE.DoubleSide} />
       </mesh>
+      {/* Edge glow — crimson tint */}
       <mesh position={[0, 0, -0.005]}>
         <planeGeometry args={[RESUME_WIDTH + 0.06, RESUME_HEIGHT + 0.06]} />
-        <meshBasicMaterial color={accentColor} transparent opacity={0.08} side={THREE.DoubleSide} />
+        <meshBasicMaterial color={accentColor} transparent opacity={0.07} side={THREE.DoubleSide} />
       </mesh>
       <SectionHighlight activeIndex={activeIndex} accentColor={accentColor} />
       <SectionHighlightBorder activeIndex={activeIndex} accentColor={accentColor} />
@@ -387,34 +393,35 @@ function SceneLights({ activeIndex }: { activeIndex: number }) {
 
   useFrame(({ clock }) => {
     const t = clock.getElapsedTime();
-    const color = sections[activeIndex]?.accentColor || "#00ff88";
+    const color = sections[activeIndex]?.accentColor || CRIMSON;
     if (l1.current) {
       l1.current.position.set(Math.sin(t * 0.3) * 4, 3, 5);
-      l1.current.intensity = 3;
+      l1.current.intensity = 4;
       l1.current.color.set(color);
     }
     if (l2.current) {
       l2.current.position.set(Math.cos(t * 0.2) * 3, -2, 4);
       l2.current.intensity = 2;
+      l2.current.color.set(CRIMSON2);
     }
     if (l3.current) {
       l3.current.position.set(0, 0, 8);
-      l3.current.intensity = 4;
+      l3.current.intensity = 3;
     }
   });
 
   return (
     <>
-      <pointLight ref={l1} color="#00ff88" intensity={3} distance={20} />
-      <pointLight ref={l2} color="#4a9eff" intensity={2} distance={15} />
-      <spotLight ref={l3} color="#ffffff" intensity={4} distance={25} angle={0.5} penumbra={0.5} />
-      <ambientLight intensity={0.15} color="#ffffff" />
+      <pointLight ref={l1} color={CRIMSON} intensity={4} distance={20} />
+      <pointLight ref={l2} color={CRIMSON2} intensity={2} distance={15} />
+      <spotLight ref={l3} color="#ffffff" intensity={3} distance={25} angle={0.5} penumbra={0.5} />
+      <ambientLight intensity={0.12} color="#ffffff" />
     </>
   );
 }
 
 function ResumeScene({ scrollProgress, activeIndex }: { scrollProgress: number; activeIndex: number }) {
-  const accentColor = sections[activeIndex]?.accentColor || "#00ff88";
+  const accentColor = sections[activeIndex]?.accentColor || CRIMSON;
   return (
     <>
       <OrbitingCamera scrollProgress={scrollProgress} activeIndex={activeIndex} />
@@ -436,10 +443,10 @@ function CSSFallback() {
           style={{ maxHeight: "90vh", width: "auto", filter: "brightness(0.5) contrast(1.2)", transform: "perspective(800px) rotateY(-5deg)" }}
         />
       </div>
-      <div style={{ position: "absolute", width: 500, height: 500, borderRadius: "50%", opacity: 0.1,
-        background: "radial-gradient(circle, #00ff88 0%, transparent 70%)", top: "10%", right: "5%", filter: "blur(100px)" }} />
+      <div style={{ position: "absolute", width: 500, height: 500, borderRadius: "50%", opacity: 0.12,
+        background: `radial-gradient(circle, ${CRIMSON} 0%, transparent 70%)`, top: "10%", right: "5%", filter: "blur(100px)" }} />
       <div style={{ position: "absolute", width: 350, height: 350, borderRadius: "50%", opacity: 0.08,
-        background: "radial-gradient(circle, #4a9eff 0%, transparent 70%)", bottom: "20%", left: "10%", filter: "blur(80px)" }} />
+        background: `radial-gradient(circle, ${CRIMSON2} 0%, transparent 70%)`, bottom: "20%", left: "10%", filter: "blur(80px)" }} />
     </div>
   );
 }
@@ -459,21 +466,27 @@ function SectionContent({ section, isActive }: { section: ResumeSection; isActiv
       transition={{ duration: 0.6 }}
       style={{ position: "relative" }}
     >
+      {/* Number + label row */}
       <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 24 }}>
         <div style={{
           height: 1,
-          width: isActive ? 48 : 32,
-          backgroundColor: isActive ? section.accentColor : "rgba(255,255,255,0.15)",
-          transition: "all 0.5s"
+          width: isActive ? 24 : 16,
+          backgroundColor: isActive ? section.accentColor : "rgba(245,240,232,0.15)",
+          transition: "all 0.5s",
         }} />
-        <span style={{ fontFamily: "monospace", fontSize: "0.6rem", letterSpacing: "0.2em", color: section.accentColor }}>
+        <span style={{ fontFamily: "'Space Grotesk', monospace", fontSize: "0.6rem", letterSpacing: "0.2em", color: section.accentColor }}>
           {section.number}
         </span>
-        <span style={{ fontFamily: "monospace", fontSize: "0.5rem", letterSpacing: "0.15em", color: "rgba(255,255,255,0.3)", textTransform: "uppercase" }}>
+        <span style={{ fontFamily: "'Space Grotesk', monospace", fontSize: "0.5rem", letterSpacing: "0.15em", color: "rgba(245,240,232,0.3)", textTransform: "uppercase" }}>
           {section.label}
         </span>
+        {/* Pulse dot */}
+        {isActive && (
+          <div style={{ width: 4, height: 4, borderRadius: "50%", backgroundColor: section.accentColor, animation: "rvPulseDot 1.5s ease-in-out infinite" }} />
+        )}
       </div>
 
+      {/* Period badge */}
       {section.period && (
         <motion.span
           initial={{ opacity: 0, x: -10 }}
@@ -481,24 +494,26 @@ function SectionContent({ section, isActive }: { section: ResumeSection; isActiv
           transition={{ duration: 0.5, delay: 0.1 }}
           style={{
             display: "inline-block",
-            fontFamily: "monospace",
+            fontFamily: "'Space Grotesk', monospace",
             fontSize: "0.6rem",
             letterSpacing: "0.12em",
             padding: "4px 12px",
-            border: `1px solid ${section.accentColor}33`,
+            border: `1px solid ${section.accentColor}44`,
             color: section.accentColor,
             marginBottom: 16,
+            textTransform: "uppercase",
           }}
         >
           {section.period}
         </motion.span>
       )}
 
+      {/* Title */}
       <h2 style={{
-        fontFamily: "'Space Grotesk', 'Inter', system-ui, sans-serif",
-        fontWeight: 700,
+        fontFamily: "'Sora', 'Space Grotesk', sans-serif",
+        fontWeight: 800,
         fontSize: "clamp(1.4rem, 3vw, 2.5rem)",
-        color: "#fff",
+        color: "#F5F0E8",
         marginBottom: 8,
         letterSpacing: "-0.02em",
         lineHeight: 1.2,
@@ -506,12 +521,14 @@ function SectionContent({ section, isActive }: { section: ResumeSection; isActiv
         {section.title}
       </h2>
 
+      {/* Subtitle */}
       {section.subtitle && (
-        <p style={{ fontFamily: "monospace", fontSize: "0.875rem", color: section.accentColor, marginBottom: 20 }}>
+        <p style={{ fontFamily: "'Space Grotesk', monospace", fontSize: "0.875rem", color: section.accentColor, marginBottom: 20 }}>
           {section.subtitle}
         </p>
       )}
 
+      {/* Content bullets */}
       {section.content.length > 0 && (
         <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 12, maxWidth: 580 }}>
           {section.content.map((item, i) => (
@@ -520,23 +537,16 @@ function SectionContent({ section, isActive }: { section: ResumeSection; isActiv
               initial={{ opacity: 0, x: -15 }}
               animate={{ opacity: isActive ? 1 : 0.3, x: isActive ? 0 : -5 }}
               transition={{ duration: 0.4, delay: 0.15 + i * 0.08 }}
-              style={{ display: "flex", alignItems: "flex-start", gap: 12, fontSize: "0.9rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.6 }}
+              style={{ display: "flex", alignItems: "flex-start", gap: 10, fontSize: "0.875rem", color: "rgba(245,240,232,0.7)", lineHeight: 1.7 }}
             >
-              <span style={{
-                marginTop: 8,
-                width: 6,
-                height: 6,
-                borderRadius: "50%",
-                flexShrink: 0,
-                backgroundColor: section.accentColor,
-                opacity: 0.6,
-              }} />
+              <span style={{ color: section.accentColor, flexShrink: 0, marginTop: 2 }}>▸</span>
               {item}
             </motion.li>
           ))}
         </ul>
       )}
 
+      {/* Skills tags */}
       {isSkills && section.tags && (
         <div style={{ display: "flex", flexWrap: "wrap", gap: 8, maxWidth: 580 }}>
           {section.tags.map((tag, i) => (
@@ -546,12 +556,15 @@ function SectionContent({ section, isActive }: { section: ResumeSection; isActiv
               animate={{ opacity: isActive ? 1 : 0.3, scale: isActive ? 1 : 0.9 }}
               transition={{ duration: 0.3, delay: 0.1 + i * 0.03 }}
               style={{
-                fontFamily: "monospace",
-                fontSize: "0.75rem",
+                fontFamily: "'Space Grotesk', monospace",
+                fontSize: "0.7rem",
+                fontWeight: 700,
+                textTransform: "uppercase",
+                letterSpacing: "0.08em",
                 padding: "5px 12px",
-                border: "1px solid rgba(0,255,136,0.2)",
-                background: "rgba(0,255,136,0.05)",
-                color: "rgba(0,255,136,0.8)",
+                border: `1px solid ${CRIMSON}33`,
+                background: `${CRIMSON}08`,
+                color: "rgba(245,240,232,0.8)",
                 transition: "all 0.3s ease",
               }}
             >
@@ -561,6 +574,7 @@ function SectionContent({ section, isActive }: { section: ResumeSection; isActiv
         </div>
       )}
 
+      {/* Contact links */}
       {isContact && isActive && (
         <motion.div
           initial={{ opacity: 0, y: 15 }}
@@ -571,29 +585,35 @@ function SectionContent({ section, isActive }: { section: ResumeSection; isActiv
           <a href="mailto:jkendrick0610@gmail.com" style={{
             display: "flex", alignItems: "center", gap: 12,
             padding: "10px 20px",
-            border: "1px solid rgba(0,255,136,0.4)",
-            color: "#00ff88",
+            border: `1px solid ${CRIMSON}66`,
+            color: BONE,
             textDecoration: "none",
-            fontFamily: "monospace",
-            fontSize: "0.875rem",
-            letterSpacing: "0.1em",
+            fontFamily: "'Space Grotesk', monospace",
+            fontSize: "0.8rem",
+            fontWeight: 700,
+            letterSpacing: "0.08em",
+            textTransform: "uppercase",
             transition: "all 0.3s",
+            background: `${CRIMSON}0a`,
           }}>
-            <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#00ff88" }} />
+            <span style={{ width: 8, height: 8, borderRadius: "50%", background: CRIMSON, flexShrink: 0 }} />
             jkendrick0610@gmail.com
           </a>
           <a href="tel:+16095005660" style={{
             display: "flex", alignItems: "center", gap: 12,
             padding: "10px 20px",
-            border: "1px solid rgba(74,158,255,0.4)",
-            color: "#4a9eff",
+            border: `1px solid ${CRIMSON2}66`,
+            color: BONE,
             textDecoration: "none",
-            fontFamily: "monospace",
-            fontSize: "0.875rem",
-            letterSpacing: "0.1em",
+            fontFamily: "'Space Grotesk', monospace",
+            fontSize: "0.8rem",
+            fontWeight: 700,
+            letterSpacing: "0.08em",
+            textTransform: "uppercase",
             transition: "all 0.3s",
+            background: `${CRIMSON2}0a`,
           }}>
-            <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#4a9eff" }} />
+            <span style={{ width: 8, height: 8, borderRadius: "50%", background: CRIMSON2, flexShrink: 0 }} />
             (609) 500-5660
           </a>
         </motion.div>
@@ -635,12 +655,13 @@ function SideNav({ activeIndex }: { activeIndex: number }) {
             cursor: "pointer",
             padding: "2px 0",
           }}
+          title={s.label}
         >
           <span style={{
-            fontFamily: "monospace",
+            fontFamily: "'Space Grotesk', monospace",
             fontSize: "0.5rem",
             letterSpacing: "0.15em",
-            color: i === activeIndex ? s.accentColor : "rgba(255,255,255,0.2)",
+            color: i === activeIndex ? s.accentColor : "rgba(245,240,232,0.2)",
             opacity: i === activeIndex ? 1 : 0,
             transition: "all 0.3s",
           }}>
@@ -649,9 +670,9 @@ function SideNav({ activeIndex }: { activeIndex: number }) {
           <div style={{
             height: 6,
             borderRadius: 3,
-            backgroundColor: i === activeIndex ? s.accentColor : "rgba(255,255,255,0.15)",
-            width: i === activeIndex ? 32 : 12,
-            boxShadow: i === activeIndex ? "0 0 8px rgba(0,255,136,0.4)" : "none",
+            backgroundColor: i === activeIndex ? s.accentColor : "rgba(245,240,232,0.12)",
+            width: i === activeIndex ? 32 : 10,
+            boxShadow: i === activeIndex ? `0 0 8px ${s.accentColor}66` : "none",
             transition: "all 0.3s",
           }} />
         </button>
@@ -667,14 +688,15 @@ function SideNav({ activeIndex }: { activeIndex: number }) {
 function TopBar({ onBack, progress }: { onBack: () => void; progress: number }) {
   return (
     <>
-      {/* Scroll progress line */}
+      {/* Scroll progress line — matches site's crimson gradient */}
       <div style={{
         position: "fixed",
         top: 0,
         left: 0,
         height: 2,
         zIndex: 50,
-        background: "linear-gradient(90deg, #00ff88, #4a9eff, #ffaa00)",
+        background: `linear-gradient(90deg, ${CRIMSON}, ${CRIMSON2})`,
+        boxShadow: `0 0 8px ${CRIMSON}cc`,
         width: `${progress * 100}%`,
         transition: "width 0.1s linear",
       }} />
@@ -689,20 +711,21 @@ function TopBar({ onBack, progress }: { onBack: () => void; progress: number }) 
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        background: "linear-gradient(to bottom, rgba(10,10,10,0.8) 0%, transparent 100%)",
+        background: "linear-gradient(to bottom, rgba(10,10,10,0.85) 0%, transparent 100%)",
       }}>
         <button
           onClick={onBack}
           style={{
             display: "flex",
             alignItems: "center",
-            gap: 12,
+            gap: 10,
             background: "none",
             border: "none",
             cursor: "pointer",
-            color: "#00ff88",
-            fontFamily: "monospace",
-            fontSize: "0.75rem",
+            color: CRIMSON,
+            fontFamily: "'Space Grotesk', monospace",
+            fontWeight: 700,
+            fontSize: "0.7rem",
             letterSpacing: "0.15em",
             textTransform: "uppercase",
             transition: "all 0.3s",
@@ -712,10 +735,28 @@ function TopBar({ onBack, progress }: { onBack: () => void; progress: number }) 
         </button>
 
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          <span style={{ fontFamily: "monospace", fontSize: "0.55rem", letterSpacing: "0.15em", color: "rgba(255,255,255,0.2)", textTransform: "uppercase" }}>
-            Resume // Jaivien Kendrick
+          {/* JK logo — matches site header */}
+          <span style={{
+            fontFamily: "'Sora', sans-serif",
+            fontWeight: 900,
+            fontSize: "1.1rem",
+            color: CRIMSON,
+            textShadow: `0 0 8px ${CRIMSON}cc`,
+            letterSpacing: "-0.5px",
+          }}>
+            JK
           </span>
-          <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#00ff88", animation: "pulse 2s infinite" }} />
+          <span style={{
+            fontFamily: "'Space Grotesk', monospace",
+            fontSize: "0.55rem",
+            letterSpacing: "0.15em",
+            color: "rgba(245,240,232,0.2)",
+            textTransform: "uppercase",
+          }}>
+            Mission Dossier
+          </span>
+          {/* Pulsing dot */}
+          <div style={{ width: 6, height: 6, borderRadius: "50%", background: CRIMSON, boxShadow: `0 0 6px ${CRIMSON}`, animation: "rvPulse 2s infinite" }} />
         </div>
       </div>
     </>
@@ -782,7 +823,7 @@ export default function ResumeViewer({ onBack }: ResumeViewerProps) {
       background: "#0a0a0a",
       overflow: "hidden",
     }}>
-      {/* 3D Resume Background — fixed inside viewer */}
+      {/* 3D Background */}
       {webglOk ? (
         <ThreeErrorBoundary fallback={<CSSFallback />}>
           <div style={{ position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none" }}>
@@ -800,25 +841,26 @@ export default function ResumeViewer({ onBack }: ResumeViewerProps) {
         <CSSFallback />
       )}
 
-      {/* Grid overlay */}
+      {/* Grid overlay — crimson tint matching site's grid-bg */}
       <div style={{
         position: "absolute",
         inset: 0,
         zIndex: 1,
         pointerEvents: "none",
-        backgroundImage: "linear-gradient(rgba(0,255,136,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,136,0.03) 1px, transparent 1px)",
-        backgroundSize: "60px 60px",
+        backgroundImage: `linear-gradient(${CRIMSON}08 1px, transparent 1px), linear-gradient(90deg, ${CRIMSON}08 1px, transparent 1px)`,
+        backgroundSize: "40px 40px",
       }} />
 
-      {/* Scan line */}
+      {/* Scan line — crimson, matching site style */}
       <div style={{
         position: "absolute",
         left: 0,
         width: "100%",
-        height: 3,
-        background: "linear-gradient(90deg, transparent, rgba(0,255,136,0.15), transparent)",
+        height: 2,
+        background: `linear-gradient(90deg, transparent 0%, ${CRIMSON}99 30%, ${CRIMSON}cc 50%, ${CRIMSON}99 70%, transparent 100%)`,
         zIndex: 2,
         pointerEvents: "none",
+        opacity: 0.4,
         animation: "rvScanMove 4s linear infinite",
       }} />
 
@@ -828,7 +870,7 @@ export default function ResumeViewer({ onBack }: ResumeViewerProps) {
       {/* Side nav */}
       <SideNav activeIndex={activeIndex} />
 
-      {/* Scrollable content container */}
+      {/* Scrollable content */}
       <div
         ref={containerRef}
         style={{
@@ -838,7 +880,7 @@ export default function ResumeViewer({ onBack }: ResumeViewerProps) {
           overflowY: "auto",
           overflowX: "hidden",
           scrollbarWidth: "thin",
-          scrollbarColor: "rgba(0,255,136,0.3) rgba(10,10,10,0.5)",
+          scrollbarColor: `${CRIMSON}55 transparent`,
         }}
       >
         {sections.map((section, i) => (
@@ -856,7 +898,7 @@ export default function ResumeViewer({ onBack }: ResumeViewerProps) {
             <div style={{
               position: "relative",
               zIndex: 10,
-              maxWidth: 580,
+              maxWidth: 560,
               margin: "0 0 0 8%",
               padding: "96px 24px",
               width: "100%",
@@ -871,12 +913,18 @@ export default function ResumeViewer({ onBack }: ResumeViewerProps) {
           position: "relative",
           zIndex: 10,
           padding: "32px 24px",
-          borderTop: "1px solid rgba(255,255,255,0.05)",
+          borderTop: `1px solid ${CRIMSON}22`,
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
         }}>
-          <span style={{ fontFamily: "monospace", fontSize: "0.55rem", color: "rgba(255,255,255,0.15)", letterSpacing: "0.1em" }}>
+          <span style={{
+            fontFamily: "'Space Grotesk', monospace",
+            fontSize: "0.55rem",
+            color: "rgba(245,240,232,0.15)",
+            letterSpacing: "0.1em",
+            textTransform: "uppercase",
+          }}>
             JAIVIEN KENDRICK // 2025
           </span>
           <button
@@ -885,26 +933,32 @@ export default function ResumeViewer({ onBack }: ResumeViewerProps) {
               background: "none",
               border: "none",
               cursor: "pointer",
-              fontFamily: "monospace",
+              fontFamily: "'Space Grotesk', monospace",
+              fontWeight: 700,
               fontSize: "0.6rem",
-              color: "rgba(0,255,136,0.4)",
+              color: `${CRIMSON}88`,
               letterSpacing: "0.15em",
               textTransform: "uppercase",
+              transition: "color 0.3s",
             }}
           >
-            Back to Home
+            ← Back to Home
           </button>
         </footer>
       </div>
 
       <style>{`
         @keyframes rvScanMove {
-          0% { top: -3px; }
+          0% { top: -2px; }
           100% { top: 100%; }
         }
-        @keyframes pulse {
+        @keyframes rvPulse {
+          0%, 100% { opacity: 1; box-shadow: 0 0 6px ${CRIMSON}; }
+          50% { opacity: 0.35; box-shadow: 0 0 2px ${CRIMSON}; }
+        }
+        @keyframes rvPulseDot {
           0%, 100% { opacity: 1; }
-          50% { opacity: 0.4; }
+          50% { opacity: 0.2; }
         }
       `}</style>
     </div>
