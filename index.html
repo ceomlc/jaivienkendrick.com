@@ -250,16 +250,7 @@
   <!-- HERO -->
   <section class="relative h-screen flex flex-col items-center justify-center overflow-hidden bg-void">
     <div class="absolute inset-0 grid-bg opacity-20"></div>
-    <div class="absolute inset-0 pointer-events-none">
-      <svg class="opacity-30" height="100%" width="100%">
-        <pattern height="100" id="particles" patternUnits="userSpaceOnUse" width="100" x="0" y="0">
-          <circle cx="2" cy="2" fill="#C41E3A" r="1"></circle>
-          <circle cx="50" cy="80" fill="#C41E3A" r="1.5"></circle>
-          <circle cx="90" cy="10" fill="#C41E3A" r="1"></circle>
-        </pattern>
-        <rect fill="url(#particles)" height="100%" width="100%"></rect>
-      </svg>
-    </div>
+    <canvas id="hero-canvas" class="absolute inset-0 w-full h-full pointer-events-none"></canvas>
     <div class="relative z-10 text-center px-4 max-w-5xl">
       <h1 class="text-[12vw] md:text-[10rem] font-display leading-none mb-4 tracking-tighter text-bone drop-shadow-2xl">JAIVIEN KENDRICK</h1>
       <div class="h-8 mb-8 overflow-hidden font-label text-crimson text-sm md:text-xl tracking-[0.2em] uppercase font-bold">
@@ -617,6 +608,88 @@
 </div>
 
 <script>
+// ── Hero Particle Canvas ─────────────────────────────────────────
+(function () {
+  const canvas = document.getElementById('hero-canvas');
+  const ctx = canvas.getContext('2d');
+  const CRIMSON = '#C41E3A';
+  const COUNT = 90;
+  let W, H, dots;
+
+  function resize() {
+    W = canvas.width  = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+  }
+
+  function randBetween(a, b) { return a + Math.random() * (b - a); }
+
+  function makeDot() {
+    return {
+      x:   Math.random() * W,
+      y:   Math.random() * H,
+      vx:  randBetween(-0.35, 0.35),
+      vy:  randBetween(-0.35, 0.35),
+      r:   randBetween(1, 2.5),
+      alpha: randBetween(0.3, 0.9),
+      pulse: randBetween(0, Math.PI * 2),
+      pulseSpeed: randBetween(0.01, 0.03),
+    };
+  }
+
+  function init() {
+    resize();
+    dots = Array.from({ length: COUNT }, makeDot);
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+
+    // Update + draw dots
+    dots.forEach(d => {
+      d.x += d.vx;
+      d.y += d.vy;
+      d.pulse += d.pulseSpeed;
+      if (d.x < 0)  d.x = W;
+      if (d.x > W)  d.x = 0;
+      if (d.y < 0)  d.y = H;
+      if (d.y > H)  d.y = 0;
+
+      const a = d.alpha * (0.7 + 0.3 * Math.sin(d.pulse));
+      ctx.beginPath();
+      ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(196,30,58,${a})`;
+      ctx.shadowBlur = 6;
+      ctx.shadowColor = CRIMSON;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    });
+
+    // Draw connecting lines between nearby dots
+    for (let i = 0; i < dots.length; i++) {
+      for (let j = i + 1; j < dots.length; j++) {
+        const dx = dots[i].x - dots[j].x;
+        const dy = dots[i].y - dots[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 120) {
+          const opacity = (1 - dist / 120) * 0.18;
+          ctx.beginPath();
+          ctx.moveTo(dots[i].x, dots[i].y);
+          ctx.lineTo(dots[j].x, dots[j].y);
+          ctx.strokeStyle = `rgba(196,30,58,${opacity})`;
+          ctx.lineWidth = 0.8;
+          ctx.stroke();
+        }
+      }
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', () => { resize(); });
+  init();
+  draw();
+})();
+
 // ── Open / Close ────────────────────────────────────────────────
 function openResumeModal() {
   const modal = document.getElementById('resume-modal');
