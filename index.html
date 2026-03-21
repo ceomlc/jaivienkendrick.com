@@ -292,40 +292,87 @@
 
   <!-- PROJECTS BENTO -->
   <section class="py-24 px-6 max-w-7xl mx-auto" id="projects">
-    <h2 class="text-4xl font-headline font-extrabold mb-16 tracking-tighter text-center">Operational Portfolio</h2>
-    <div class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-6 h-auto md:h-[800px]">
-      <div class="md:col-span-2 md:row-span-1 glass-card p-8 group relative overflow-hidden flex flex-col justify-end crimson-border-glow">
-        <div class="absolute inset-0 bg-neutral-900 -z-10"><img class="w-full h-full object-cover opacity-20 group-hover:scale-110 group-hover:opacity-40 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD43O130OH68497QD8mFYxoc2oDag2Y0qs_Gn2D0jHh_ZOzdwE98l22xIpzxJ0P0XLGIgKi6-yVBN97uuUkTWffzZShM_EZSbzY135VJxjT3zyuGs9S5tuheDJT_6LefJKx4UoIa6ONgCj7PrOqwlrnqV_PFUVqurSLIOPXuE4tGUcV_9LVPlnAQegBxP4Z0ZNVtI9dGLyZcWmnEoTXbBG_ZmqLboENs0YcstD6IrwStZY22ejlVrVIjPDn7_4WBgJveUqdlnVoOQ" alt="OpenClaw"/></div>
-        <span class="font-label text-[10px] text-crimson font-bold uppercase tracking-widest mb-2">AI Infrastructure</span>
+    <div class="text-center mb-16">
+      <span class="font-label text-crimson text-[10px] font-bold uppercase tracking-widest mb-3 block">What I've Built</span>
+      <h2 class="text-4xl font-headline font-extrabold tracking-tighter">Operational Portfolio</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+
+      <!-- Row 1 -->
+      <!-- OpenClaw — wide -->
+      <div class="md:col-span-2 glass-card p-8 group relative overflow-hidden flex flex-col justify-end crimson-border-glow min-h-[280px]">
+        <div class="absolute inset-0 -z-10 bg-gradient-to-br from-neutral-900 to-[#1a0508]"></div>
+        <!-- Animated grid overlay on hover -->
+        <div class="absolute inset-0 -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style="background-image:linear-gradient(rgba(196,30,58,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(196,30,58,0.06) 1px,transparent 1px);background-size:24px 24px;"></div>
+        <div class="mb-auto pt-2 flex gap-2 flex-wrap opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+          <span class="font-label text-[9px] uppercase tracking-widest px-2 py-1 border border-crimson/30 text-crimson/70">Multi-Agent Systems</span>
+          <span class="font-label text-[9px] uppercase tracking-widest px-2 py-1 border border-crimson/30 text-crimson/70">A2A Communication</span>
+          <span class="font-label text-[9px] uppercase tracking-widest px-2 py-1 border border-crimson/30 text-crimson/70">Tailscale</span>
+          <span class="font-label text-[9px] uppercase tracking-widest px-2 py-1 border border-crimson/30 text-crimson/70">Autonomous Workflows</span>
+        </div>
+        <span class="font-label text-[10px] text-crimson font-bold uppercase tracking-widest mb-2 mt-6">AI Infrastructure</span>
         <h3 class="text-4xl font-display mb-2">OPENCLAW</h3>
-        <p class="text-sm text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-4 group-hover:translate-y-0 duration-300">Multi-agent AI ecosystem for autonomous task orchestration and business processing.</p>
+        <p class="text-sm text-gray-400 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">Two named AI agents — Athena (orchestrator) and Thoth (executor) — operating over an encrypted Tailscale bridge. Handles autonomous lead outreach via iMessage, job surfacing, coding, and client builds. Both agents run self-improving learning loops: Capture → Evaluate → Distill → Apply.</p>
       </div>
-      <div class="md:col-span-1 md:row-span-1 glass-card p-8 group relative overflow-hidden flex flex-col justify-end crimson-border-glow">
-        <div class="absolute inset-0 bg-neutral-900 -z-10"><img class="w-full h-full object-cover opacity-20 group-hover:scale-110 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB72Gg5vw1-9dTWTkHCJESXDb9lhbiVRuCGKkmlbsV_gBHJTbOVnQEV3H--v0hefNgJLyC8h4DgBfewYtrmy9_gfTskF8vhxYzornp1BLmYaCzKSnVCrmhlrSCNZ_UoUGzMUx6GRnvHAKEHzjUM4IJci0p1EzVEgfzxlfoG59bH7-nRZsv4H6Iqc7yyruEyFrZ_ig8erfzy0qPY67XyhNdVx4T6wxpt1lKTchcoHZJclXNjXM5Y5xLzxLPOHdS71hn5IRVDi5hhnw" alt="More Life Consulting"/></div>
-        <span class="font-label text-[10px] text-crimson font-bold uppercase tracking-widest mb-2">Agency</span>
+
+      <!-- More Life Consulting -->
+      <div class="md:col-span-1 glass-card p-8 group relative overflow-hidden flex flex-col justify-end crimson-border-glow min-h-[280px]">
+        <div class="absolute inset-0 -z-10 bg-gradient-to-br from-neutral-900 to-[#0a0a1a]"></div>
+        <div class="absolute inset-0 -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style="background-image:linear-gradient(rgba(196,30,58,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(196,30,58,0.06) 1px,transparent 1px);background-size:24px 24px;"></div>
+        <div class="mb-auto pt-2 flex flex-col gap-1 opacity-0 group-hover:opacity-100 transition-all duration-300">
+          <span class="font-label text-[9px] uppercase tracking-widest px-2 py-1 border border-crimson/30 text-crimson/70 w-fit">Make.com · n8n</span>
+          <span class="font-label text-[9px] uppercase tracking-widest px-2 py-1 border border-crimson/30 text-crimson/70 w-fit">LLM Agents</span>
+          <span class="font-label text-[9px] uppercase tracking-widest px-2 py-1 border border-crimson/30 text-crimson/70 w-fit">API Architecture</span>
+        </div>
+        <span class="font-label text-[10px] text-crimson font-bold uppercase tracking-widest mb-2 mt-6">AI Consulting Agency</span>
         <h3 class="text-2xl font-display mb-2">MORE LIFE CONSULTING</h3>
+        <p class="text-sm text-gray-400 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">40+ hrs/week eliminated. $5K+/month saved. Product timelines cut from 12 months to under 3. Clients include The James Brand and Virgent AI.</p>
       </div>
-      <div class="md:col-span-1 md:row-span-1 glass-card p-8 group relative overflow-hidden flex flex-col justify-end crimson-border-glow">
-        <div class="absolute inset-0 bg-neutral-900 -z-10"><img class="w-full h-full object-cover opacity-20 group-hover:scale-110 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCU4sJRphJB9QYyRa9bZmikk8JK0niZfeNEU6F2C2lwdM8jkful49udkACQ1MLaIwkklNKnIHiofHqeIQkNwrYHCP50RA-sQCZVXSca4i1nRE7_qfGARwlHw1R2JNm2BFMEVMMtoce-Ix4liSyuZqz9woKAUdXjUjXTKq__8IfU8epfpDk7LLF1ENf-_GkYPRSNNZi7ZxPFwGT-Zqiyvzvl1SWYIqi_wn1-YtmYff14H7r5RwcbHMdkNQcBi0puq1PFfdpJx3ZXKA" alt="AidSmart"/></div>
-        <span class="font-label text-[10px] text-crimson font-bold uppercase tracking-widest mb-2">Social Impact</span>
+
+      <!-- AidSmart -->
+      <div class="md:col-span-1 glass-card p-8 group relative overflow-hidden flex flex-col justify-end crimson-border-glow min-h-[280px]">
+        <div class="absolute inset-0 -z-10 bg-gradient-to-br from-neutral-900 to-[#0a120a]"></div>
+        <div class="absolute inset-0 -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style="background-image:linear-gradient(rgba(196,30,58,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(196,30,58,0.06) 1px,transparent 1px);background-size:24px 24px;"></div>
+        <div class="mb-auto pt-2 flex flex-col gap-1 opacity-0 group-hover:opacity-100 transition-all duration-300">
+          <span class="font-label text-[9px] uppercase tracking-widest px-2 py-1 border border-crimson/30 text-crimson/70 w-fit">EdTech · SaaS</span>
+          <span class="font-label text-[9px] uppercase tracking-widest px-2 py-1 border border-crimson/30 text-crimson/70 w-fit">Bloom's Taxonomy</span>
+          <span class="font-label text-[9px] uppercase tracking-widest px-2 py-1 border border-crimson/30 text-crimson/70 w-fit">Community Impact</span>
+        </div>
+        <span class="font-label text-[10px] text-crimson font-bold uppercase tracking-widest mb-2 mt-6">Social Impact</span>
         <h3 class="text-2xl font-display mb-2">AIDSMART</h3>
+        <p class="text-sm text-gray-400 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">Gamified financial literacy platform for high school students. Live Kahoot-style workshops running in Baltimore. Built on Bloom's Taxonomy — 5 topics, 6 cognitive levels, 9+ game mechanics.</p>
       </div>
-      <div class="md:col-span-1 md:row-span-1 glass-card p-8 group relative overflow-hidden flex flex-col justify-end crimson-border-glow">
-        <div class="absolute inset-0 bg-neutral-900 -z-10"><img class="w-full h-full object-cover opacity-20 group-hover:scale-110 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC81lY9050s-zBUAEu-Ejy3S1bBP0v7tmMAyl8Kzi6K-hUZ0z0aSY6t1Plfkzdq6pK71fRdAEeJkw0v45nsC4M6_uP-AUDNKtQU0NpmKho5m2sdFRpVrNd_SVVmxlSOlEWfrIZ3diizzUeLSd6he9oQHbFmRW6OOC76vgfduVubODLEcRUkf7M-dAm03vOpgZ_az87xNYT85c62LX4M0NV-b-eqwku6_W6IS8opOe_YQZZ8zBZzqyLLQydldDBUoi_9RClGl0R4hA" alt="Mission Control"/></div>
-        <span class="font-label text-[10px] text-crimson font-bold uppercase tracking-widest mb-2">Internal Tools</span>
-        <h3 class="text-2xl font-display mb-2">MISSION CONTROL</h3>
+
+      <!-- Row 2 -->
+      <!-- Mission Control — wide -->
+      <div class="md:col-span-2 glass-card p-8 group relative overflow-hidden flex flex-col justify-end crimson-border-glow min-h-[260px]">
+        <div class="absolute inset-0 -z-10 bg-gradient-to-br from-neutral-900 to-[#0a0a1a]"></div>
+        <div class="absolute inset-0 -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style="background-image:linear-gradient(rgba(196,30,58,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(196,30,58,0.06) 1px,transparent 1px);background-size:24px 24px;"></div>
+        <div class="mb-auto pt-2 flex gap-2 flex-wrap opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+          <span class="font-label text-[9px] uppercase tracking-widest px-2 py-1 border border-crimson/30 text-crimson/70">Next.js</span>
+          <span class="font-label text-[9px] uppercase tracking-widest px-2 py-1 border border-crimson/30 text-crimson/70">Vercel</span>
+          <span class="font-label text-[9px] uppercase tracking-widest px-2 py-1 border border-crimson/30 text-crimson/70">Real-Time Dashboards</span>
+          <span class="font-label text-[9px] uppercase tracking-widest px-2 py-1 border border-crimson/30 text-crimson/70">Human-in-the-Loop</span>
+        </div>
+        <span class="font-label text-[10px] text-crimson font-bold uppercase tracking-widest mb-2 mt-6">Personal OS · Internal Tools</span>
+        <h3 class="text-4xl font-display mb-2">MISSION CONTROL</h3>
+        <p class="text-sm text-gray-400 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">Custom web command center (Next.js + Vercel) for all OpenClaw operations. Real-time agent monitoring, lead approval pipeline, job feed, KPI dashboard, and content queue — every AI action requiring real-world consequence routes through Mission Control for human approval first.</p>
       </div>
-      <div class="md:col-span-2 md:row-span-1 glass-card p-8 group relative overflow-hidden flex flex-col justify-end crimson-border-glow">
-        <div class="absolute inset-0 bg-neutral-900 -z-10"><img class="w-full h-full object-cover opacity-20 group-hover:scale-110 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWRTtEdGHU80NFaawGXMcQNFFUEwFvkuq1Ii-CnZ_y-wYH4JOncy8nCO1pS7yqgnNTgZfW1wl0MeSMTJyaMhziyCxkWb7XdzglspjYaxzTskiBNnZvMwWjPfLpCsUABwouuritHhI1YXxbcrlTHd8U8icknCv9r1v6uec3plCJ1WEzp7r_GDazMc8Vv-njccIdeBRfOK8PXURJq2o8NlInDMectPBRjq3OdgQtqjmr_U1416G9k8vcfXbM2XKMud8-nQBVLAQD3Q" alt="Winning With AI"/></div>
-        <span class="font-label text-[10px] text-crimson font-bold uppercase tracking-widest mb-2">Author</span>
+
+      <!-- Winning With AI — wide -->
+      <div class="md:col-span-2 glass-card p-8 group relative overflow-hidden flex flex-col justify-end crimson-border-glow min-h-[260px]">
+        <div class="absolute inset-0 -z-10 bg-gradient-to-br from-neutral-900 to-[#120a0a]"></div>
+        <div class="absolute inset-0 -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style="background-image:linear-gradient(rgba(196,30,58,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(196,30,58,0.06) 1px,transparent 1px);background-size:24px 24px;"></div>
+        <div class="mb-auto pt-2 flex gap-2 flex-wrap opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+          <span class="font-label text-[9px] uppercase tracking-widest px-2 py-1 border border-crimson/30 text-crimson/70">AI Literacy</span>
+          <span class="font-label text-[9px] uppercase tracking-widest px-2 py-1 border border-crimson/30 text-crimson/70">ChatGPT · Gemini · Mistral</span>
+          <span class="font-label text-[9px] uppercase tracking-widest px-2 py-1 border border-crimson/30 text-crimson/70">Thought Leadership</span>
+        </div>
+        <span class="font-label text-[10px] text-crimson font-bold uppercase tracking-widest mb-2 mt-6">Published Author</span>
         <h3 class="text-4xl font-display mb-2">WINNING WITH AI</h3>
-        <p class="text-sm text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-4 group-hover:translate-y-0 duration-300">A strategic guide to implementing generative AI within small to mid-sized operations.</p>
+        <p class="text-sm text-gray-400 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">A practical guide to navigating today's leading AI tools — ChatGPT, Gemini, Mistral, and beyond. Breaks down what each tool is best at and how to deploy them for real business outcomes. Written for operators, founders, and anyone trying to get actual ROI from AI.</p>
       </div>
-      <div class="md:col-span-1 md:row-span-1 glass-card p-8 group relative overflow-hidden flex flex-col justify-end crimson-border-glow">
-        <div class="absolute inset-0 bg-neutral-900 -z-10"><img class="w-full h-full object-cover opacity-20 group-hover:scale-110 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyjqmsUkdEZqkxHs_7amJ0UYMs0C82MRvoiZTtzXblm0M1rgounahh8LZNGlKZCQkuaYYJmgaGCpLk7bVn4eoOkQzwZgwZukViM-_l-0VXNVsAAmH7eT6aaEVNJ5RaOg0vZynwNR0aUNUv_ROFfQx6Kc7-xaoIIhupL7e-XA-Za8-QaS-yx6_Slr_p3RwAsQXUvGd6Flo0PvbieLcpVw5GSl7YV50Dywf2lHkBavBkidb-7pPzlqk3Qv9-HCWHkHOYy410gDYAkw" alt="Nicotine Vending"/></div>
-        <span class="font-label text-[10px] text-crimson font-bold uppercase tracking-widest mb-2">Hardware/Retail</span>
-        <h3 class="text-2xl font-display mb-2">NICOTINE VENDING</h3>
-      </div>
+
     </div>
   </section>
 
