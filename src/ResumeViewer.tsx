@@ -1034,49 +1034,6 @@ export default function ResumeViewer({ onBack }: ResumeViewerProps) {
         </footer>
       </div>
 
-      {/* Floating download pill — appears when user is near end */}
-      <motion.div
-        initial={{ y: 80, opacity: 0 }}
-        animate={{ y: scrollProgress > 0.88 ? 0 : 80, opacity: scrollProgress > 0.88 ? 1 : 0 }}
-        transition={{ type: "spring", stiffness: 260, damping: 22 }}
-        style={{
-          position: "fixed",
-          bottom: 32,
-          left: "50%",
-          transform: "translateX(-50%)",
-          zIndex: 50,
-          pointerEvents: scrollProgress > 0.88 ? "auto" : "none",
-        }}
-      >
-        <a
-          href="/resume.pdf"
-          download="Jaivien-Kendrick-Resume.pdf"
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 10,
-            padding: "14px 28px",
-            background: CRIMSON,
-            color: BONE,
-            textDecoration: "none",
-            fontFamily: "'Space Grotesk', monospace",
-            fontWeight: 700,
-            fontSize: "0.7rem",
-            letterSpacing: "0.12em",
-            textTransform: "uppercase",
-            boxShadow: `0 0 24px ${CRIMSON}88, 0 4px 20px rgba(0,0,0,0.5)`,
-            borderRadius: 2,
-            whiteSpace: "nowrap",
-          }}
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-            <polyline points="7 10 12 15 17 10"/>
-            <line x1="12" y1="15" x2="12" y2="3"/>
-          </svg>
-          Download Resume PDF
-        </a>
-      </motion.div>
 
       <style>{`
         @keyframes rvScanMove {
