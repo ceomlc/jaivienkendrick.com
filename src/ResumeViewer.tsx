@@ -908,6 +908,93 @@ export default function ResumeViewer({ onBack }: ResumeViewerProps) {
           </section>
         ))}
 
+        {/* Download CTA — full-width section before footer */}
+        <section style={{
+          minHeight: "100vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          position: "relative",
+          zIndex: 10,
+          flexDirection: "column",
+          gap: 40,
+          padding: "80px 24px",
+          textAlign: "center",
+        }}>
+          <div style={{
+            width: 1,
+            height: 80,
+            background: `linear-gradient(to bottom, transparent, ${CRIMSON}66)`,
+            margin: "0 auto",
+          }} />
+          <div>
+            <p style={{
+              fontFamily: "'Space Grotesk', monospace",
+              fontSize: "0.6rem",
+              letterSpacing: "0.2em",
+              color: `${CRIMSON}`,
+              textTransform: "uppercase",
+              marginBottom: 16,
+            }}>
+              END OF DOSSIER
+            </p>
+            <h2 style={{
+              fontFamily: "'Sora', sans-serif",
+              fontWeight: 900,
+              fontSize: "clamp(2rem, 5vw, 4rem)",
+              color: BONE,
+              letterSpacing: "-0.03em",
+              lineHeight: 1.1,
+              marginBottom: 16,
+            }}>
+              Want the full file?
+            </h2>
+            <p style={{
+              fontFamily: "'Space Grotesk', monospace",
+              fontSize: "0.875rem",
+              color: "rgba(245,240,232,0.4)",
+              maxWidth: 400,
+              margin: "0 auto 40px",
+              lineHeight: 1.7,
+            }}>
+              Download a clean PDF copy of the complete resume to share or review offline.
+            </p>
+            <a
+              href="/resume.pdf"
+              download="Jaivien-Kendrick-Resume.pdf"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 12,
+                padding: "18px 40px",
+                background: CRIMSON,
+                color: BONE,
+                textDecoration: "none",
+                fontFamily: "'Space Grotesk', monospace",
+                fontWeight: 700,
+                fontSize: "0.8rem",
+                letterSpacing: "0.15em",
+                textTransform: "uppercase",
+                transition: "all 0.3s",
+                boxShadow: `0 0 32px ${CRIMSON}55`,
+              }}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+              </svg>
+              Download Resume PDF
+            </a>
+          </div>
+          <div style={{
+            width: 1,
+            height: 80,
+            background: `linear-gradient(to top, transparent, ${CRIMSON}66)`,
+            margin: "0 auto",
+          }} />
+        </section>
+
         {/* Footer */}
         <footer style={{
           position: "relative",
@@ -946,6 +1033,50 @@ export default function ResumeViewer({ onBack }: ResumeViewerProps) {
           </button>
         </footer>
       </div>
+
+      {/* Floating download pill — appears when user is near end */}
+      <motion.div
+        initial={{ y: 80, opacity: 0 }}
+        animate={{ y: scrollProgress > 0.88 ? 0 : 80, opacity: scrollProgress > 0.88 ? 1 : 0 }}
+        transition={{ type: "spring", stiffness: 260, damping: 22 }}
+        style={{
+          position: "fixed",
+          bottom: 32,
+          left: "50%",
+          transform: "translateX(-50%)",
+          zIndex: 50,
+          pointerEvents: scrollProgress > 0.88 ? "auto" : "none",
+        }}
+      >
+        <a
+          href="/resume.pdf"
+          download="Jaivien-Kendrick-Resume.pdf"
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 10,
+            padding: "14px 28px",
+            background: CRIMSON,
+            color: BONE,
+            textDecoration: "none",
+            fontFamily: "'Space Grotesk', monospace",
+            fontWeight: 700,
+            fontSize: "0.7rem",
+            letterSpacing: "0.12em",
+            textTransform: "uppercase",
+            boxShadow: `0 0 24px ${CRIMSON}88, 0 4px 20px rgba(0,0,0,0.5)`,
+            borderRadius: 2,
+            whiteSpace: "nowrap",
+          }}
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download Resume PDF
+        </a>
+      </motion.div>
 
       <style>{`
         @keyframes rvScanMove {
