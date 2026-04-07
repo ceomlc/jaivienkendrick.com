@@ -18,11 +18,11 @@ import * as THREE from "three";
    CONSTANTS & DATA
    ═══════════════════════════════════════════════════════ */
 
-const RESUME_IMAGE_URL = "https://d2xsxph8kpxj0f.cloudfront.net/107630172/8yTcvRQivSUeBoZH7nKhfL/resume-page-0_ab0a4ccf.png";
+const RESUME_IMAGE_URL = "/resume-preview.png";
 
-// Resume aspect ratio: 2479 x 3504 → width:height = 0.7076
+// Resume aspect ratio: 1836 x 2376 → width:height = 0.7727
 const RESUME_WIDTH = 4;
-const RESUME_HEIGHT = RESUME_WIDTH / 0.7076; // ~5.65
+const RESUME_HEIGHT = RESUME_WIDTH / 0.7727; // ~5.18
 
 // Section regions on the resume (normalized Y: 0=top, 1=bottom)
 const SECTION_REGIONS = [
