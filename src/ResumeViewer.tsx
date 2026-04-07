@@ -26,14 +26,14 @@ const RESUME_HEIGHT = RESUME_WIDTH / 0.7727; // ~5.18
 
 // Section regions on the resume (normalized Y: 0=top, 1=bottom)
 const SECTION_REGIONS = [
-  { yStart: 0.100, yEnd: 0.225 },   // 0: Professional Summary
-  { yStart: 0.220, yEnd: 0.400 },   // 1: Morgan Stanley
-  { yStart: 0.398, yEnd: 0.558 },   // 2: More Life Consulting
-  { yStart: 0.558, yEnd: 0.668 },   // 3: AT&T
-  { yStart: 0.672, yEnd: 0.726 },   // 4: Kendrick Legacy Scholarship
-  { yStart: 0.812, yEnd: 0.896 },   // 5: Skills
-  { yStart: 0.738, yEnd: 0.800 },   // 6: Education
-  { yStart: 0.910, yEnd: 0.958 },   // 7: Links / Contact
+  { yStart: 0.10, yEnd: 0.22 },   // 0: Summary
+  { yStart: 0.25, yEnd: 0.42 },   // 1: Morgan Stanley
+  { yStart: 0.42, yEnd: 0.58 },   // 2: More Life Consulting
+  { yStart: 0.58, yEnd: 0.72 },   // 3: Mission Coach AI
+  { yStart: 0.72, yEnd: 0.80 },   // 4: Education
+  { yStart: 0.80, yEnd: 0.88 },   // 5: Publications & Teaching
+  { yStart: 0.88, yEnd: 0.97 },   // 6: Technical Skills
+  { yStart: 0.10, yEnd: 0.97 },   // 7: Contact
 ];
 
 // Site palette
@@ -58,10 +58,11 @@ const sections: ResumeSection[] = [
     id: "summary",
     number: "01",
     label: "MISSION BRIEF",
-    title: "OPERATOR. BUILDER. AUTOMATOR.",
+    title: "AI SYSTEMS BUILDER. AUTOMATION ARCHITECT. OPS STRATEGIST.",
     content: [
-      "AI Strategy & Business Operations Consultant with 3 years of experience designing AI automation and operational systems that cut manual work by 40+ hours weekly and accelerate product development by 70%+.",
-      "Skilled in automation architecture, API integrations, Alteryx, UiPath, and process analysis; delivers workflow redesigns that generate $5K+ monthly savings and scale across HVAC, travel, startup, and regulated environments.",
+      "AI automation specialist and operations strategist with 3+ years designing and shipping production-grade automation systems that eliminate 40+ hours of manual work weekly and generate measurable cost savings.",
+      "Background spans regulated financial environments (Morgan Stanley), multi-agent AI infrastructure, and LLM-powered tooling. Published author of Winning With AI and AI instructor at the HBCU level.",
+      "Targeting roles where deep technical AI automation expertise translates directly to operational and revenue outcomes.",
     ],
     accentColor: CRIMSON,
   },
@@ -70,13 +71,13 @@ const sections: ResumeSection[] = [
     number: "02",
     label: "PRIMARY OPS",
     title: "Operations Analyst",
-    subtitle: "Morgan Stanley — Operations Risk & Regulatory Control",
+    subtitle: "Morgan Stanley — Ops Risk & Regulatory Control",
     period: "Jul 2025 — Present",
     content: [
-      "Strengthened operational integrity by improving risk event reviews and reducing exposure with targeted controls.",
-      "Supported regulatory workflows by validating data quality to align processes with SEC and FINRA requirements.",
-      "Automated routine tasks using Alteryx and UiPath to accelerate operational workflows and reporting.",
-      "Developing an AI-powered training assistant enabling new hires to conversationally query procedures, reducing onboarding friction and accelerating time-to-competency.",
+      "Strengthened operational integrity through risk event reviews and targeted exposure controls aligned with SEC and FINRA requirements.",
+      "Automated routine reporting and validation workflows using Alteryx and UiPath, reducing manual processing time across the team.",
+      "Building an LLM-powered training assistant enabling new hires to query procedures conversationally — reducing onboarding friction and accelerating time-to-competency.",
+      "Validated data quality across regulatory workflows to ensure process alignment with compliance standards.",
     ],
     accentColor: CRIMSON,
   },
@@ -84,68 +85,68 @@ const sections: ResumeSection[] = [
     id: "more-life",
     number: "03",
     label: "CONSULTING OPS",
-    title: "Founder & AI Consultant",
+    title: "Founder & AI Automation Consultant",
     subtitle: "More Life Consulting",
-    period: "2023 — Present",
+    period: "2023 — Jan 2026",
     content: [
-      "Design AI automation systems that eliminate 40+ hours of manual work per week for clients across HVAC, travel, and startup sectors.",
-      "Reduce product development timelines from 10–12 months to under 3 months, accelerating speed-to-market by 70%+.",
-      "Deliver workflow redesigns that generate $5,000+ in monthly operational savings for small and mid-sized businesses.",
-      "Build LLM-powered agents, integrations, and internal tools using Replit, Cursor, Lovable, Make.com, n8n, and multi-API architectures.",
-      "Consulted notable companies including The James Brand and Virgent AI on digital systems and operational strategy.",
+      "Designed AI automation systems eliminating 40+ hours of manual work per week for clients across HVAC, travel, and startup sectors.",
+      "Reduced client product development timelines from 10–12 months to under 3 months — a 70%+ acceleration in speed-to-market.",
+      "Delivered workflow redesigns generating $5,000+ in monthly operational savings for small and mid-sized businesses.",
+      "Built production multi-agent infrastructure (orchestrators, sub-agents, API pipelines) using Claude Code, n8n, Make.com, Supabase, and Tailscale for end-to-end autonomous outreach and operations.",
+      "Consulted The James Brand and Virgent AI on digital systems and operational strategy.",
     ],
     accentColor: CRIMSON2,
   },
   {
-    id: "att",
+    id: "mission-coach",
     number: "04",
-    label: "LEADERSHIP OPS",
-    title: "AT&T Rising Future Maker",
-    subtitle: "AT&T — National Leadership Program",
-    period: "2022 — 2023",
+    label: "TECHNICAL OPS",
+    title: "Chief Technology Officer",
+    subtitle: "Mission Coach AI",
+    period: "2024 — Jan 2026",
     content: [
-      "Led design collaboration with NBA partners to create All-Star Weekend merchandise driving measurable brand visibility.",
-      "Organized community Hoop Fest events that increased local participation and improved community relations.",
-      "Represented AT&T at national conferences to strengthen corporate presence and expand stakeholder networks.",
-      "Developed engagement strategies that produced measurable improvements in brand recognition and community impact.",
-    ],
-    accentColor: CRIMSON,
-  },
-  {
-    id: "scholarship",
-    number: "05",
-    label: "COMMUNITY OPS",
-    title: "Kendrick Legacy Scholarship",
-    subtitle: "Founder",
-    period: "2023 — Present",
-    content: [
-      "Built a community-funded scholarship awarding support to 20+ high school students, increasing local sponsorships by 30%.",
-    ],
-    accentColor: CRIMSON2,
-  },
-  {
-    id: "skills",
-    number: "06",
-    label: "ARMAMENT",
-    title: "Tech Stack & Capabilities",
-    content: [],
-    tags: [
-      "AI Strategy", "Automation Architecture", "LLM Ops", "Custom Agents", "Make.com", "n8n",
-      "Alteryx", "UiPath", "Power BI", "Data & Process Analysis", "Operational Risk", "Regulatory Compliance",
-      "Workflow Optimization", "Project Management", "Problem Structuring", "Cross-Functional Collaboration",
-      "Replit", "API Integrations", "Python", "React", "Git", "Cursor",
+      "Designed end-to-end system architecture for an AI coaching platform — spanning auth, billing isolation, multi-tenant data modeling, and LLM integration layers.",
+      "Architected enterprise pricing tiers with isolated billing logic, ensuring clean separation between user plans and feature access at the infrastructure level.",
+      "Diagnosed and resolved critical SMS notification bugs affecting user engagement flows, restoring reliability across communication pipelines.",
+      "Led technical roadmap decisions across product, infrastructure, and AI tooling — translating business goals into scalable system design.",
     ],
     accentColor: CRIMSON,
   },
   {
     id: "education",
-    number: "07",
+    number: "05",
     label: "INTELLIGENCE",
     title: "University of Maryland",
     subtitle: "College Park, MD",
     content: [
-      "B.S., Business Administration (Marketing)",
-      "Robert H. Smith School of Business — Class of 2025",
+      "B.S. Business Administration (Marketing)",
+      "Robert H. Smith School of Business — May 2025",
+    ],
+    accentColor: CRIMSON2,
+  },
+  {
+    id: "publications",
+    number: "06",
+    label: "THOUGHT LEADERSHIP",
+    title: "Publications & Teaching",
+    content: [
+      "Author — Winning With AI: A practical guide to AI adoption for business operators.",
+      "AI Tools Instructor — Taught applied AI tooling at an HBCU; curriculum covered LLMs, automation platforms, and practical implementation.",
+    ],
+    accentColor: CRIMSON,
+  },
+  {
+    id: "skills",
+    number: "07",
+    label: "ARMAMENT",
+    title: "Technical Skills",
+    content: [],
+    tags: [
+      "Claude Code", "Multi-Agent Orchestration", "LLM APIs", "Prompt Engineering", "OpenAI", "Gemini CLI",
+      "n8n", "Make.com", "UiPath", "Alteryx", "Supabase", "REST APIs", "AppleScript", "Tailscale",
+      "Next.js", "Vercel", "Replit", "Cursor", "GitHub", "Node.js",
+      "Power BI", "Data Quality Validation", "Process Analysis",
+      "Operational Risk", "Regulatory Compliance (SEC/FINRA)", "Workflow Optimization",
     ],
     accentColor: CRIMSON2,
   },
